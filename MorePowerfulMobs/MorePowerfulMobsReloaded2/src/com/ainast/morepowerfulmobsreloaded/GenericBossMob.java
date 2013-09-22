@@ -37,7 +37,7 @@ public class GenericBossMob implements Runnable, Listener{
 	ItemStack[] drops;
 	int dropChance;
 	int experience;
-	
+	String bossName = "Shouldn't be null, I change it!";
 	String deathMessage;
 	
 	Random generator = new Random(System.currentTimeMillis());
@@ -51,6 +51,7 @@ public class GenericBossMob implements Runnable, Listener{
 		this.drops = drops;
 		this.dropChance = dropChance;
 		this.experience = experience;
+		this.bossName = bossName;
 		
 		MPMTools.plugin.getServer().getPluginManager().registerEvents(this,  MPMTools.plugin);
 	}
@@ -60,13 +61,19 @@ public class GenericBossMob implements Runnable, Listener{
 		if (!isAlive()){
 			spawnNewBoss();
 		}
+		
+		if (boss.isDead()){
+			setAlive(false);
+		}
 	}
 	
 	private void spawnNewBoss() {
-		System.out.println("spaw New Boss?");
+		System.out.println("spawn New Boss?");
 		boss = location.getWorld().spawnCreature(location, entityType);	
 		setAlive(true);
 		equipBoss();
+		this.boss.setCustomName(this.bossName);
+		this.boss.setCustomNameVisible(true);
 	}
 	
 	private void equipBoss() {
@@ -103,6 +110,7 @@ public class GenericBossMob implements Runnable, Listener{
 			sendMassMessage(deathMessage, entity);
 			}	
 		}
+
 
 	private void sendMassMessage(String message, Entity entity) {
 		if (message!=null){

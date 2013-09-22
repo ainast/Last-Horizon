@@ -203,6 +203,10 @@ public class PlayerEvents implements Listener{
 			returnOnDeath.put(player,  keepItems);
 			event.getDrops().clear();
 			event.getDrops().addAll(droppedItems);
+			
+			for (ItemStack item : keepItems){
+				player.getInventory().addItem(item);
+			}
 		}
 	}
 	

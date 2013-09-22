@@ -47,39 +47,39 @@ public class PerTickBuffs implements Runnable {
 			//
 			
 			if (attributes.containsKey("STRENGTH I")){
-				PotionEffect temp = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 40, 1);
+				PotionEffect temp = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 40, 10);
 				p.addPotionEffect(temp, true);
 			}
 			if (attributes.containsKey("STRENGTH II")){
-				PotionEffect temp = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 40, 2);
+				PotionEffect temp = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 40, 20);
 				p.addPotionEffect(temp, true);
 			}
 			if (attributes.containsKey("SPEED I")){
-				PotionEffect temp = new PotionEffect(PotionEffectType.SPEED, 40, 1);
+				PotionEffect temp = new PotionEffect(PotionEffectType.SPEED, 40, 10);
 				p.addPotionEffect(temp, true);
 			}
 			if (attributes.containsKey("SPEED II")){
-				PotionEffect temp = new PotionEffect(PotionEffectType.SPEED, 40, 2);
+				PotionEffect temp = new PotionEffect(PotionEffectType.SPEED, 40, 20);
 				p.addPotionEffect(temp, true);
 			}
 			if (attributes.containsKey("SLOW I")){
-				PotionEffect temp = new PotionEffect(PotionEffectType.SLOW, 40, 1);
+				PotionEffect temp = new PotionEffect(PotionEffectType.SLOW, 40, 10);
 				p.addPotionEffect(temp, true);
 			}
 			if (attributes.containsKey("SLOW II")){
-				PotionEffect temp = new PotionEffect(PotionEffectType.SLOW, 40, 2);
+				PotionEffect temp = new PotionEffect(PotionEffectType.SLOW, 40, 20);
 				p.addPotionEffect(temp, true);
 			}
 			if (attributes.containsKey("INVISIBILITY")){
-				PotionEffect temp = new PotionEffect(PotionEffectType.INVISIBILITY, 40, 2);
+				PotionEffect temp = new PotionEffect(PotionEffectType.INVISIBILITY, 40, 20);
 				p.addPotionEffect(temp, true);
 			}
 			if (attributes.containsKey("FIRE RESISTANCE I")){
-				PotionEffect temp = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40, 1);
+				PotionEffect temp = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40, 10);
 				p.addPotionEffect(temp, true);
 			}
 			if (attributes.containsKey("FIRE RESISTANCE II")){
-				PotionEffect temp = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40, 2);
+				PotionEffect temp = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40, 20);
 				p.addPotionEffect(temp, true);
 			}
 		}

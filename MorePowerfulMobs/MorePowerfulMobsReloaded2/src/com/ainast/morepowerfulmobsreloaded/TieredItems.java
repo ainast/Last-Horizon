@@ -36,16 +36,18 @@ public class TieredItems {
 		
 		lore.add("MANA Regeneration: -3");
 		
-		lore.add("SLOW I");
+		//lore.add("SLOW I");
 		
 
 		itemMeta.setDisplayName("Dented Plate Mail");
 		itemMeta.setLore(lore);
 		item.setItemMeta(itemMeta);
 		
-		percent = MPMTools.generator.nextInt(3-1)+1;  //divide by 100 on next line to get percentage.
+		percent = MPMTools.generator.nextInt(30-10)+10;  //divide by 100 on next line to get percentage.
 		item = SimpleAttributesAPI.addItemAttribute(item, "Dented Plate Mail" ,  AttributeType.GENERIC_KNOCKBACK_RESISTANCE, percent/100.0);
 
+		percent = 25;
+		item = SimpleAttributesAPI.addItemAttribute(item, "Dented Plate Mail" ,  AttributeType.GENERIC_MOVEMENT_SPEED, percent/100.0);
 		
 		return item;
 	}

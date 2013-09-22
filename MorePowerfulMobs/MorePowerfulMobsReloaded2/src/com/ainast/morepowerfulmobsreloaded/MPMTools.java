@@ -111,10 +111,10 @@ public class MPMTools {
 								HashMap<String, Long> temp = playerAttributes.get(player);
 							
 								if (playerAttributes.get(player).containsKey(attribute[0])){
-									temp.put(attribute[0], Long.parseLong(attribute[1]) + playerAttributes.get(player).get(attribute[0]));
+									temp.put(attribute[0], Long.parseLong(attribute[1].trim()) + playerAttributes.get(player).get(attribute[0]));
 									
 								}else if (!(playerAttributes.get(player).containsKey(attribute[0]))){
-									temp.put(attribute[0], Long.parseLong(attribute[1]));
+									temp.put(attribute[0], Long.parseLong(attribute[1].trim()));
 								}
 								playerAttributes.put(player, temp);
 							}
