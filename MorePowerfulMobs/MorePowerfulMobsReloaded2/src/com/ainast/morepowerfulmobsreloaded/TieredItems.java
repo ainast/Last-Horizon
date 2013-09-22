@@ -5,8 +5,10 @@ import java.util.List;
 
 import me.egordm.simpleattributes.API.SimpleAttributesAPI;
 import me.egordm.simpleattributes.Attributes.AttributeType;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class TieredItems {
 	public static ItemStack getTier1DentedPlateMail(){
@@ -19,13 +21,11 @@ public class TieredItems {
 		 * 		Slow 1 Effect
 		 */	
 		ItemStack item = new ItemStack(Material.DIAMOND_CHESTPLATE);
+		ItemMeta itemMeta = item.getItemMeta();
 		
 		int percent = 0;
 		
-		percent = MPMTools.generator.nextInt(3-1)+1;  //divide by 100 on next line to get percentage.
-		item = SimpleAttributesAPI.addItemAttribute(item, "Dented Plate Mail" ,  AttributeType.GENERIC_KNOCKBACK_RESISTANCE, percent/100);
-		
-		item.getItemMeta().setDisplayName("Dented Plate Mail");
+
 		List<String> lore = new ArrayList<String>();
 		
 		percent = MPMTools.generator.nextInt(7-5)+5;
@@ -38,7 +38,15 @@ public class TieredItems {
 		
 		lore.add("SLOW I");
 		
-		item.getItemMeta().setLore(lore);
+
+		itemMeta.setDisplayName("Dented Plate Mail");
+		itemMeta.setLore(lore);
+		item.setItemMeta(itemMeta);
+		
+		percent = MPMTools.generator.nextInt(3-1)+1;  //divide by 100 on next line to get percentage.
+		item = SimpleAttributesAPI.addItemAttribute(item, "Dented Plate Mail" ,  AttributeType.GENERIC_KNOCKBACK_RESISTANCE, percent/100.0);
+
+		
 		return item;
 	}
 }

@@ -24,16 +24,16 @@ public class MorePowerfulMobs extends JavaPlugin{
 		Location loc;
 		
 		if (this.getServer().getPlayer("crysillion")==null){
-			r1World = getServer().getWorld("World");
-			loc = new Location(r1World, -126, 99, 461);
+			r1World = getServer().getWorld("world");
+			loc = new Location(r1World, -201, 63, 479);
 		}else{
 			loc = this.getServer().getPlayer("crysillion").getLocation();
 		}
 		
 		ItemStack[] drops = { TieredItems.getTier1DentedPlateMail() };
 		gbm = new GenericBossMob("Evil Frank", loc, EntityType.ZOMBIE, TieredItems.getTier1DentedPlateMail(), null, drops, 100, 10000);
-		gbm.setMaxHealth(10000);
-		getServer().getScheduler().runTaskTimer(this, gbm, 0, 400);		
+		//gbm.setMaxHealth(10000);
+		getServer().getScheduler().runTaskTimer(this, gbm, 0, 100);		
 	
 		getServer().getPluginManager().registerEvents(new MobEvents(), this);
 		getServer().getPluginManager().registerEvents(new PlayerEvents(), this);

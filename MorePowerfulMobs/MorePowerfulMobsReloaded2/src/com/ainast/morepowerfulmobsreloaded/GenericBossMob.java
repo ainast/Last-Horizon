@@ -8,6 +8,8 @@ import java.util.Map.Entry;
 import java.util.Random;
 import java.util.UUID;
 
+import net.minecraft.server.v1_6_R2.ItemTool;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -61,6 +63,7 @@ public class GenericBossMob implements Runnable, Listener{
 	}
 	
 	private void spawnNewBoss() {
+		System.out.println("spaw New Boss?");
 		boss = location.getWorld().spawnCreature(location, entityType);	
 		setAlive(true);
 		equipBoss();
@@ -74,7 +77,7 @@ public class GenericBossMob implements Runnable, Listener{
 		int randomNumber = generator.nextInt(100)+1;
 		if (randomNumber<=dropChance){
 			for (ItemStack item : drops){
-				Bukkit.getWorld(location.getWorld().getName()).dropItem(location, item);
+				Bukkit.getWorld(location.getWorld().getName()).dropItem(location, TieredItems.getTier1DentedPlateMail());
 			}
 		}
 	}
