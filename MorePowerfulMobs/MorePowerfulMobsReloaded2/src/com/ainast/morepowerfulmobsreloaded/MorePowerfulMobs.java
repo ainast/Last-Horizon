@@ -30,7 +30,8 @@ public class MorePowerfulMobs extends JavaPlugin{
 			loc = this.getServer().getPlayer("crysillion").getLocation();
 		}
 		
-		gbm = new GenericBossMob("Evil Frank", loc, EntityType.ZOMBIE, new ItemStack(Material.DIAMOND_SWORD), null, null, 0, 0);
+		ItemStack[] drops = { TieredItems.getTier1DentedPlateMail() };
+		gbm = new GenericBossMob("Evil Frank", loc, EntityType.ZOMBIE, TieredItems.getTier1DentedPlateMail(), null, drops, 100, 10000);
 		gbm.setMaxHealth(10000);
 		getServer().getScheduler().runTaskTimer(this, gbm, 0, 400);		
 	

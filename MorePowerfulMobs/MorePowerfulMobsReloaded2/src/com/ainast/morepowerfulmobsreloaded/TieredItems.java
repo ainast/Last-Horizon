@@ -9,7 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 public class TieredItems {
-	public ItemStack getTier1DentedPlateMail(){
+	public static ItemStack getTier1DentedPlateMail(){
 		/*
 		 * Includes:
 		 * 		Resistance to Physical: 3-7%
