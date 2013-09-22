@@ -29,16 +29,16 @@ public class PerTickBuffs implements Runnable {
 			h.clearHealthBonuses();
 			h.clearMaxMana();
 			
-			if (attributes.containsKey("Maximum MANA")){
-				h.addMaxMana("MPM", attributes.get("Maximum MANA").intValue());
+			if (attributes.containsKey(MPMAttributeType.MAXIMUM_MANA)){
+				h.addMaxMana("MPM", attributes.get(MPMAttributeType.MAXIMUM_MANA).intValue());
 			}
 			
-			if (attributes.containsKey("Maximum HEALTH")){
-				h.addMaxHealth("MPM", attributes.get("Maximum HEALTH").doubleValue());
+			if (attributes.containsKey(MPMAttributeType.MAXIMUM_HEALTH)){
+				h.addMaxHealth("MPM", attributes.get(MPMAttributeType.MAXIMUM_HEALTH).doubleValue());
 			}
 			
-			if (attributes.containsKey("Reduce cooldown on JUMP")){
-				long cooldown = (h.getCooldown("jump") - attributes.get("Reduce cooldown on JUMP")*1000);
+			if (attributes.containsKey(MPMAttributeType.REDUCE_COOLDOWN_ON_JUMP)){
+				long cooldown = (h.getCooldown("jump") - attributes.get(MPMAttributeType.REDUCE_COOLDOWN_ON_JUMP)*1000);
 				if (cooldown<0) cooldown = 0;
 				h.setCooldown("jump", cooldown);
 			}
@@ -46,39 +46,39 @@ public class PerTickBuffs implements Runnable {
 			// add more here.  Same format for reducing cooldowns on other skills.
 			//
 			
-			if (attributes.containsKey("STRENGTH I")){
+			if (attributes.containsKey(MPMAttributeType.STRENGTH_1)){
 				PotionEffect temp = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 40, 2);
 				p.addPotionEffect(temp, true);
 			}
-			if (attributes.containsKey("STRENGTH II")){
+			if (attributes.containsKey(MPMAttributeType.STRENGTH_2)){
 				PotionEffect temp = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 40, 4);
 				p.addPotionEffect(temp, true);
 			}
-			if (attributes.containsKey("SPEED I")){
+			if (attributes.containsKey(MPMAttributeType.SPEED_1)){
 				PotionEffect temp = new PotionEffect(PotionEffectType.SPEED, 40, 2);
 				p.addPotionEffect(temp, true);
 			}
-			if (attributes.containsKey("SPEED II")){
+			if (attributes.containsKey(MPMAttributeType.SPEED_2)){
 				PotionEffect temp = new PotionEffect(PotionEffectType.SPEED, 40, 4);
 				p.addPotionEffect(temp, true);
 			}
-			if (attributes.containsKey("SLOW I")){
+			if (attributes.containsKey(MPMAttributeType.SLOW_1)){
 				PotionEffect temp = new PotionEffect(PotionEffectType.SLOW, 40, 2);
 				p.addPotionEffect(temp, true);
 			}
-			if (attributes.containsKey("SLOW II")){
+			if (attributes.containsKey(MPMAttributeType.SLOW_2)){
 				PotionEffect temp = new PotionEffect(PotionEffectType.SLOW, 40, 4);
 				p.addPotionEffect(temp, true);
 			}
-			if (attributes.containsKey("INVISIBILITY")){
+			if (attributes.containsKey(MPMAttributeType.INVISIBILITY)){
 				PotionEffect temp = new PotionEffect(PotionEffectType.INVISIBILITY, 40, 2);
 				p.addPotionEffect(temp, true);
 			}
-			if (attributes.containsKey("FIRE RESISTANCE I")){
+			if (attributes.containsKey(MPMAttributeType.FIRE_RESISTANCE_1)){
 				PotionEffect temp = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40, 2);
 				p.addPotionEffect(temp, true);
 			}
-			if (attributes.containsKey("FIRE RESISTANCE II")){
+			if (attributes.containsKey(MPMAttributeType.FIRE_RESISTANCE_2)){
 				PotionEffect temp = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40, 4);
 				p.addPotionEffect(temp, true);
 			}

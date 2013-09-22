@@ -36,51 +36,52 @@ public class MPMTools {
 	
 	public MPMTools(JavaPlugin plugin){
 		this.plugin = plugin;
-		possibleAttributes.add("Resistance to DARK");
-		possibleAttributes.add("Resistance to EARTH");
-		possibleAttributes.add("Resistance to FIRE");
-		possibleAttributes.add("Resistance to FORCE");
-		possibleAttributes.add("Resistance to ICE");
-		possibleAttributes.add("Resistance to LIGHT");
-		possibleAttributes.add("Resistance to LIGHTNING");
-		possibleAttributes.add("Resistance to PHYSICAL");
-		possibleAttributes.add("Resistance to MAGIC");
+		possibleAttributes.add(MPMAttributeType.RESISTANCE_TO_DARK);
+		possibleAttributes.add(MPMAttributeType.RESISTANCE_TO_EARTH);
+		possibleAttributes.add(MPMAttributeType.RESISTANCE_TO_FIRE);
+		possibleAttributes.add(MPMAttributeType.RESISTANCE_TO_FORCE);
+		possibleAttributes.add(MPMAttributeType.RESISTANCE_TO_ICE);
+		possibleAttributes.add(MPMAttributeType.RESISTANCE_TO_LIGHT);
+		possibleAttributes.add(MPMAttributeType.RESISTANCE_TO_LIGHTNING);
+		possibleAttributes.add(MPMAttributeType.RESISTANCE_TO_PHYSICAL);
+		possibleAttributes.add(MPMAttributeType.RESISTANCE_TO_MAGIC);
 		
-		possibleAttributes.add("Reduce cooldown on JUMP");
+		possibleAttributes.add(MPMAttributeType.REDUCE_COOLDOWN_ON_JUMP);
 		
-		possibleAttributes.add("Maximum MANA");
-		possibleAttributes.add("Maximum HEALTH");
+		possibleAttributes.add(MPMAttributeType.MAXIMUM_MANA);
+		possibleAttributes.add(MPMAttributeType.MAXIMUM_HEALTH);
 		
-		possibleAttributes.add("HEALTH Regeneration");
-		possibleAttributes.add("MANA Regeneration");
+		possibleAttributes.add(MPMAttributeType.HEALTH_REGENERATION);
+		possibleAttributes.add(MPMAttributeType.MANA_REGENERATION);
 		
-		possibleAttributes.add("Increase EXPERIENCE");
-		possibleAttributes.add("Decrease EXPERIENCE");
-		possibleAttributes.add("Negate EXPERIENCE");
+		possibleAttributes.add(MPMAttributeType.INCREASE_EXPERIENCE);
+		possibleAttributes.add(MPMAttributeType.DECREASE_EXPERIENCE);
+		possibleAttributes.add(MPMAttributeType.NEGATE_EXPERIENCE);
 		
-		possibleAttributes.add("STRENGTH I");
-		possibleAttributes.add("STRENGTH II");
-		possibleAttributes.add("SPEED I");
-		possibleAttributes.add("SPEED II");
-		possibleAttributes.add("SLOW I");
-		possibleAttributes.add("SLOW II");
-		possibleAttributes.add("INVISIBILITY");
-		possibleAttributes.add("FIRE RESISTANCE I");
-		possibleAttributes.add("FIRE RESISTANCE II");
+		possibleAttributes.add(MPMAttributeType.STRENGTH_1);
+		possibleAttributes.add(MPMAttributeType.STRENGTH_2);
+		possibleAttributes.add(MPMAttributeType.SPEED_1);
+		possibleAttributes.add(MPMAttributeType.SPEED_2);
+		possibleAttributes.add(MPMAttributeType.SLOW_1);
+		possibleAttributes.add(MPMAttributeType.SLOW_2);
+		possibleAttributes.add(MPMAttributeType.INVISIBILITY);
+		possibleAttributes.add(MPMAttributeType.FIRE_RESISTANCE_1);
+		possibleAttributes.add(MPMAttributeType.FIRE_RESISTANCE_2);
 		
-		possibleAttributes.add("Increase ATTACK DAMAGE");
-		possibleAttributes.add("Decrease ATTACK DAMAGE");
-		possibleAttributes.add("Increase MOVEMENT SPEED");
-		possibleAttributes.add("Decrease MOVEMENT SPEED");
-		possibleAttributes.add("Increase KNOCKBACK RESISTANCE");
-		possibleAttributes.add("Decrease KNOCKBACK RESISTANCE");
+		possibleAttributes.add(MPMAttributeType.INCREASE_ATTACK_DAMAGE);
+		possibleAttributes.add(MPMAttributeType.DECREASE_ATTACK_DAMAGE);
+		possibleAttributes.add(MPMAttributeType.INCREASE_MOVEMENT_SPEED);
+		possibleAttributes.add(MPMAttributeType.DECREASE_MOVEMENT_SPEED);
+		possibleAttributes.add(MPMAttributeType.INCREASE_KNOCKBACK_RESISTANCE);
+		possibleAttributes.add(MPMAttributeType.DECREASE_KNOCKBACK_RESISTANCE);
 		
-		possibleAttributes.add("DEATH DEFYING");
-		possibleAttributes.add("MitchiriNeko March");
+		possibleAttributes.add(MPMAttributeType.DEATH_DEFYING);
+		possibleAttributes.add(MPMAttributeType.DEVILS_TAKE);
+		possibleAttributes.add(MPMAttributeType.MITCHIRINEKO_MARCH);
 		
-		for (String s : possibleAttributes){
-			System.out.println(s);
-		}
+		possibleAttributes.add(MPMAttributeType.POISONOUS);  //unimplemented
+		possibleAttributes.add(MPMAttributeType.BLINDING); //unimplimented
+		possibleAttributes.add(MPMAttributeType.HEALING); //unimplemented
 		
 	}
 	
@@ -106,7 +107,6 @@ public class MPMTools {
 					for (String s : itemLore){
 						String[] attribute = s.split(":");
 						if (attribute.length>1){
-							System.out.println(attribute[0] + "\t" + attribute[1] + "\t" + possibleAttributes.contains("DEATH DEFYING"));
 							if (possibleAttributes.contains(attribute[0])){
 								HashMap<String, Long> temp = playerAttributes.get(player);
 							
@@ -119,7 +119,6 @@ public class MPMTools {
 								playerAttributes.put(player, temp);
 							}
 						}else if (attribute.length==1){
-							System.out.println(attribute[0] + "\t" + possibleAttributes.contains("DEATH DEFYING"));
 							if (possibleAttributes.contains(attribute[0])){
 								HashMap<String, Long> temp = playerAttributes.get(player);
 								temp.put(attribute[0], Long.MAX_VALUE);

@@ -58,51 +58,51 @@ public class PlayerEvents implements Listener{
 	
 		double oldDamage = event.getDamage();
 		double modifiedDamage = 0;
-		if (attributes.containsKey("Resistance to DARK")){
+		if (attributes.containsKey(MPMAttributeType.RESISTANCE_TO_DARK)){
 			if (st.contains(SkillType.DARK)){
-				long value = attributes.get("Resistance to DARK");
+				long value = attributes.get(MPMAttributeType.RESISTANCE_TO_DARK);
 				modifiedDamage += oldDamage * (value/100.0);
 			}
 		}
-		if (attributes.containsKey("Resistance to EARTH")){
+		if (attributes.containsKey(MPMAttributeType.RESISTANCE_TO_EARTH)){
 			if (st.contains(SkillType.EARTH)){
-				long value = attributes.get("Resistance to EARTH");
+				long value = attributes.get(MPMAttributeType.RESISTANCE_TO_EARTH);
 				modifiedDamage += oldDamage * (value/100.0);
 			}
 		}
-		if (attributes.containsKey("Resistance to FORCE")){
+		if (attributes.containsKey(MPMAttributeType.RESISTANCE_TO_FORCE)){
 			if (st.contains(SkillType.FORCE)){
-				long value = attributes.get("Resistance to FORCE");
+				long value = attributes.get(MPMAttributeType.RESISTANCE_TO_FORCE);
 				modifiedDamage += oldDamage * (value/100.0);
 			}
 		}
-		if (attributes.containsKey("Resistance to ICE")){
+		if (attributes.containsKey(MPMAttributeType.RESISTANCE_TO_ICE)){
 			if (st.contains(SkillType.ICE)){
-				long value = attributes.get("Resistance to ICE");
+				long value = attributes.get(MPMAttributeType.RESISTANCE_TO_ICE);
 				modifiedDamage += oldDamage * (value/100.0);
 			}
 		}
-		if (attributes.containsKey("Resistance to LIGHT")){
+		if (attributes.containsKey(MPMAttributeType.RESISTANCE_TO_LIGHT)){
 			if (st.contains(SkillType.LIGHT)){
-				long value = attributes.get("Resistance to LIGHT");
+				long value = attributes.get(MPMAttributeType.RESISTANCE_TO_LIGHT);
 				modifiedDamage += oldDamage * (value/100.0);
 			}
 		}
-		if (attributes.containsKey("Resistance to LIGHTNING")){
+		if (attributes.containsKey(MPMAttributeType.RESISTANCE_TO_LIGHTNING)){
 			if (st.contains(SkillType.LIGHTNING)){
-				long value = attributes.get("Resistance to LIGHTNING");
+				long value = attributes.get(MPMAttributeType.RESISTANCE_TO_LIGHTNING);
 				modifiedDamage += oldDamage * (value/100);
 			}
 		}
-		if (attributes.containsKey("Resistance to PHYSICAL")){
+		if (attributes.containsKey(MPMAttributeType.RESISTANCE_TO_PHYSICAL)){
 			if (st.contains(SkillType.PHYSICAL)){
-				long value = attributes.get("Resistance to PHYSICAL");
+				long value = attributes.get(MPMAttributeType.RESISTANCE_TO_PHYSICAL);
 				modifiedDamage += oldDamage * (value/100.0);
 			}
 		}
-		if (attributes.containsKey("Resistance to MAGIC")){
+		if (attributes.containsKey(MPMAttributeType.RESISTANCE_TO_MAGIC)){
 			if (st.contains(SkillType.MANA)){
-				long value = attributes.get("Resistance to MAGIC");
+				long value = attributes.get(MPMAttributeType.RESISTANCE_TO_MAGIC);
 				modifiedDamage += oldDamage * (value/100.0);
 			}
 		}
@@ -116,8 +116,8 @@ public class PlayerEvents implements Listener{
 	public void onHeroRegainManaEvent(HeroRegainManaEvent event){
 		Hero hero = event.getHero();
 		HashMap<String, Long> attributes = MPMTools.playerAttributes.get(hero.getPlayer());
-		if (attributes.containsKey("MANA Regeneration")){
-			long extraRegen = attributes.get("MANA Regeneration");
+		if (attributes.containsKey(MPMAttributeType.MANA_REGENERATION)){
+			long extraRegen = attributes.get(MPMAttributeType.MANA_REGENERATION);
 			event.setAmount((int) (event.getAmount() + extraRegen));
 		}	
 	}
@@ -138,9 +138,9 @@ public class PlayerEvents implements Listener{
 		Player player = (Player) event.getEntity();
 		
 		if (MPMTools.playerAttributes.containsKey(player)){
-			if (MPMTools.playerAttributes.get(player).containsKey("HEALTH Regeneration")){
+			if (MPMTools.playerAttributes.get(player).containsKey(MPMAttributeType.HEALTH_REGENERATION)){
 				double oldAmount = event.getAmount();
-				double modifier = MPMTools.playerAttributes.get(player).get("HEALTH Regeneration");
+				double modifier = MPMTools.playerAttributes.get(player).get(MPMAttributeType.HEALTH_REGENERATION);
 				event.setAmount(oldAmount + modifier);
 			}
 		}
@@ -153,17 +153,17 @@ public class PlayerEvents implements Listener{
 		Player player = event.getHero().getPlayer();
 		if (MPMTools.playerAttributes.containsKey(player)){
 			HashMap<String, Long> attributes = MPMTools.playerAttributes.get(player);
-			if (attributes.containsKey("Negate EXPERIENCE")){
+			if (attributes.containsKey(MPMAttributeType.NEGATE_EXPERIENCE)){
 				event.setCancelled(true);
 				return;
 			}
 			
-			if (attributes.containsKey("Increase EXPERIENCE")){
-				experience = (oldExperience + (oldExperience * attributes.get("Increase EXPERIENCE")/100.0));
+			if (attributes.containsKey(MPMAttributeType.INCREASE_EXPERIENCE)){
+				experience = (oldExperience + (oldExperience * attributes.get(MPMAttributeType.INCREASE_EXPERIENCE)/100.0));
 			}
 			
-			if (attributes.containsKey("Decrease EXPERIENCE")){
-				experience =  (oldExperience - (oldExperience * attributes.get("Increase EXPERIENCE")/100.0));
+			if (attributes.containsKey(MPMAttributeType.DECREASE_EXPERIENCE)){
+				experience =  (oldExperience - (oldExperience * attributes.get(MPMAttributeType.INCREASE_EXPERIENCE)/100.0));
 			}		
 		}
 		event.setExpGain(experience);
@@ -173,7 +173,7 @@ public class PlayerEvents implements Listener{
 	
 	@EventHandler
 	public void onPlayerDeathEvent(PlayerDeathEvent event){
-		if (MPMTools.playerAttributes.get(event.getEntity()).containsKey("DEATH DEFYING")){
+		if (MPMTools.playerAttributes.get(event.getEntity()).containsKey(MPMAttributeType.DEATH_DEFYING)){
 			Player player = event.getEntity();
 			List<ItemStack> droppedItems = event.getDrops();
 			
@@ -184,11 +184,14 @@ public class PlayerEvents implements Listener{
 						System.out.println("Item has Meta");
 						if (item.getItemMeta().hasLore()){
 							System.out.println("Item has Lore");
-							if (item.getItemMeta().getLore().contains("DEATH DEFYING")){
+							if (item.getItemMeta().getLore().contains(MPMAttributeType.DEATH_DEFYING)){
 								System.out.println("Item has DEATH DEFYING");
 								item.setDurability((short) (item.getDurability()*0.15));
 								player.getInventory().addItem(item.clone());
 								event.getDrops().remove(item);
+							}else if (item.getItemMeta().getLore().contains(MPMAttributeType.DEVILS_TAKE)){
+								System.out.println("Item has DEVILS TAKE");
+								event.getDrops().remove(item);	
 							}
 						}
 					}
@@ -203,7 +206,7 @@ public class PlayerEvents implements Listener{
 		if (player.getItemInHand()==null) return;
 		
 		if (event.getAction()==Action.RIGHT_CLICK_AIR && MPMTools.playerAttributes.containsKey(player)){
-			if (MPMTools.playerAttributes.get(player).containsKey("MitchiriNeko March")){
+			if (MPMTools.playerAttributes.get(player).containsKey(MPMAttributeType.MITCHIRINEKO_MARCH)){
 				InputStream is = MPMTools.plugin.getResource("mo.mid");
 				
 				Set<Player> playerList = new HashSet<Player>();

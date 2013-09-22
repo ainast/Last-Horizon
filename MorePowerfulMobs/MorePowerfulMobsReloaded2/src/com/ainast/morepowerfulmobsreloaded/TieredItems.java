@@ -36,7 +36,7 @@ public class TieredItems {
 		
 		lore.add("MANA Regeneration: -3");
 		
-		//lore.add("SLOW I");
+		//lore.add(MPMAttributeType.SLOW_1);
 		
 
 		itemMeta.setDisplayName("Dented Plate Mail");
