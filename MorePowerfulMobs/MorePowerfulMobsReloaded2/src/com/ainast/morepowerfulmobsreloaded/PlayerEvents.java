@@ -43,9 +43,6 @@ import com.herocraftonline.heroes.characters.skill.SkillType;
 
 public class PlayerEvents implements Listener{
 	
-	HashMap<Player, List<ItemStack>> returnOnDeath = new HashMap<Player, List<ItemStack>>();
-	
-	
 	@EventHandler
 	public void onCharacterDamageEvent(SkillDamageEvent event){
 		
@@ -176,12 +173,9 @@ public class PlayerEvents implements Listener{
 	
 	@EventHandler
 	public void onPlayerDeathEvent(PlayerDeathEvent event){
-		System.out.println("Player Death Event");
 		if (MPMTools.playerAttributes.get(event.getEntity()).containsKey("DEATH DEFYING")){
-			System.out.println("pA.cK(DEATH DEFYING)");
 			Player player = event.getEntity();
 			List<ItemStack> droppedItems = event.getDrops();
-			List<ItemStack> keepItems = new ArrayList<ItemStack>();
 			
 			for (ItemStack item : droppedItems){
 				if (item!=null){
@@ -192,37 +186,15 @@ public class PlayerEvents implements Listener{
 							System.out.println("Item has Lore");
 							if (item.getItemMeta().getLore().contains("DEATH DEFYING")){
 								System.out.println("Item has DEATH DEFYING");
-								
-								keepItems.add(item);
-								droppedItems.remove(item);
+								item.setDurability((short) (item.getDurability()*0.15));
+								player.getInventory().addItem(item.clone());
+								event.getDrops().remove(item);
 							}
 						}
 					}
 				}
 			}
-			returnOnDeath.put(player,  keepItems);
-			event.getDrops().clear();
-			event.getDrops().addAll(droppedItems);
-			
-			for (ItemStack item : keepItems){
-				player.getInventory().addItem(item);
-			}
 		}
-	}
-	
-	@EventHandler
-	public void onPlayerRespawnEvent(PlayerRespawnEvent event){
-		System.out.println("Player Respawn Event");
-		Player player = event.getPlayer();
-		
-		if ((!returnOnDeath.containsKey(player))) return;
-		
-		List<ItemStack> items = returnOnDeath.get(player);
-		for (ItemStack item: items){
-			player.getInventory().addItem(item);
-		}
-		
-		returnOnDeath.remove(player);
 	}
 	
 	@EventHandler
@@ -230,26 +202,27 @@ public class PlayerEvents implements Listener{
 		Player player = event.getPlayer();
 		if (player.getItemInHand()==null) return;
 		
-		if (event.getAction()==Action.RIGHT_CLICK_AIR){
-			
-			InputStream is = MPMTools.plugin.getResource("mo.mid");
-			
-			Set<Player> playerList = new HashSet<Player>();
-			for (Entity e : player.getNearbyEntities(35, 35, 35)){
-				if (e instanceof Player) playerList.add((Player) e);
-			}
-			playerList.add(player);
-			try {
-				MidiUtil.playMidi(is, (float) 1, playerList);
-			} catch (InvalidMidiDataException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (MidiUnavailableException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+		if (event.getAction()==Action.RIGHT_CLICK_AIR && MPMTools.playerAttributes.containsKey(player)){
+			if (MPMTools.playerAttributes.get(player).containsKey("MitchiriNeko March")){
+				InputStream is = MPMTools.plugin.getResource("mo.mid");
+				
+				Set<Player> playerList = new HashSet<Player>();
+				for (Entity e : player.getNearbyEntities(35, 35, 35)){
+					if (e instanceof Player) playerList.add((Player) e);
+				}
+				playerList.add(player);
+				try {
+					MidiUtil.playMidi(is, (float) 1, playerList);
+				} catch (InvalidMidiDataException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (MidiUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 	}

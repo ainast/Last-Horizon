@@ -1,0 +1,8 @@
+name: enchantHandicap
+main: com.ainast.enchantHandicap.enchantHandicap
+version: 2
+
+commands:
+ maxenchants:
+  description: This command displays the servers maximum enchantment levels.
+  usage: /<command>
