@@ -8,6 +8,7 @@ import java.util.Map;
 import me.egordm.simpleattributes.util.Potions;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -81,6 +82,12 @@ public class PerTickBuffs implements Runnable {
 			if (attributes.containsKey(MPMAttributeType.FIRE_RESISTANCE_2)){
 				PotionEffect temp = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 40, 4);
 				p.addPotionEffect(temp, true);
+			}
+			if (attributes.containsKey(MPMAttributeType.CAT_PURR)){
+				int chance = MPMTools.generator.nextInt(100)+1;
+				if (chance<5){
+					p.getWorld().playSound(p.getLocation(), Sound.CAT_PURR, 1, 1);
+				}
 			}
 		}
 	}

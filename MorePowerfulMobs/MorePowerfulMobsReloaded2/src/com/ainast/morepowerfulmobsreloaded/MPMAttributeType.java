@@ -20,8 +20,8 @@ public class MPMAttributeType {
 	final static String HEALTH_REGENERATION = "HEALTH Regeneration";
 	final static String MANA_REGENERATION = "MANA Regeneration";
 	
-	final static String INCREASE_EXPERIENCE = "Increase Experience";
-	final static String DECREASE_EXPERIENCE = "Decrease Experience";
+	final static String INCREASE_EXPERIENCE = "Increase EXPERIENCE";
+	final static String DECREASE_EXPERIENCE = "Decrease EXPERIENCE";
 	final static String NEGATE_EXPERIENCE = "Negate EXPERIENCE";
 	
 	final static String STRENGTH_1 = "STRENGTH I";
@@ -49,4 +49,6 @@ public class MPMAttributeType {
 	final static String BLINDING = "Blinding";
 	final static String HEALING = "Healing";
 	
+	final static String DRAGON_GROWL = "Dragon's ROAR!";
+	final static String CAT_PURR = "CAT LOVER";
 }

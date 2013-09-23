@@ -1,6 +1,5 @@
 package com.ainast.morepowerfulmobsreloaded;
 
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 public class ItemTools {

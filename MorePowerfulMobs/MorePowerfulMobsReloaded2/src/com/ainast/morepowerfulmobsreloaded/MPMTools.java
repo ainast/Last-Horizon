@@ -68,12 +68,12 @@ public class MPMTools {
 		possibleAttributes.add(MPMAttributeType.FIRE_RESISTANCE_1);
 		possibleAttributes.add(MPMAttributeType.FIRE_RESISTANCE_2);
 		
-		possibleAttributes.add(MPMAttributeType.INCREASE_ATTACK_DAMAGE);
+		possibleAttributes.add(MPMAttributeType.INCREASE_ATTACK_DAMAGE); 
 		possibleAttributes.add(MPMAttributeType.DECREASE_ATTACK_DAMAGE);
-		possibleAttributes.add(MPMAttributeType.INCREASE_MOVEMENT_SPEED);
-		possibleAttributes.add(MPMAttributeType.DECREASE_MOVEMENT_SPEED);
-		possibleAttributes.add(MPMAttributeType.INCREASE_KNOCKBACK_RESISTANCE);
-		possibleAttributes.add(MPMAttributeType.DECREASE_KNOCKBACK_RESISTANCE);
+		possibleAttributes.add(MPMAttributeType.INCREASE_MOVEMENT_SPEED); //possibly remove
+		possibleAttributes.add(MPMAttributeType.DECREASE_MOVEMENT_SPEED); //possibly remove
+		possibleAttributes.add(MPMAttributeType.INCREASE_KNOCKBACK_RESISTANCE); //possibly remove
+		possibleAttributes.add(MPMAttributeType.DECREASE_KNOCKBACK_RESISTANCE); //possibly remove
 		
 		possibleAttributes.add(MPMAttributeType.DEATH_DEFYING);
 		possibleAttributes.add(MPMAttributeType.DEVILS_TAKE);
@@ -83,6 +83,8 @@ public class MPMTools {
 		possibleAttributes.add(MPMAttributeType.BLINDING); //unimplimented
 		possibleAttributes.add(MPMAttributeType.HEALING); //unimplemented
 		
+		possibleAttributes.add(MPMAttributeType.DRAGON_GROWL);
+		possibleAttributes.add(MPMAttributeType.CAT_PURR);
 	}
 	
 	public static void calculateAttributes(Player player){

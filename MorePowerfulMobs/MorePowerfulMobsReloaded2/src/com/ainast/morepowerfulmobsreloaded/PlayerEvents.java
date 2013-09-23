@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -15,6 +16,7 @@ import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Sequence;
 
+import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -34,6 +36,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.herocraftonline.heroes.api.events.ExperienceChangeEvent;
+import com.herocraftonline.heroes.api.events.HeroEnterCombatEvent;
 import com.herocraftonline.heroes.api.events.HeroKillCharacterEvent;
 import com.herocraftonline.heroes.api.events.HeroRegainHealthEvent;
 import com.herocraftonline.heroes.api.events.HeroRegainManaEvent;
@@ -173,30 +176,42 @@ public class PlayerEvents implements Listener{
 	
 	@EventHandler
 	public void onPlayerDeathEvent(PlayerDeathEvent event){
-		if (MPMTools.playerAttributes.get(event.getEntity()).containsKey(MPMAttributeType.DEATH_DEFYING)){
-			Player player = event.getEntity();
-			List<ItemStack> droppedItems = event.getDrops();
+		Player player = event.getEntity();
+		if (MPMTools.playerAttributes.containsKey(player)){
+			List<ItemStack> dropsToRemove =  new ArrayList<ItemStack>();
+			List<ItemStack> dropsToAdd = new ArrayList<ItemStack>();
 			
-			for (ItemStack item : droppedItems){
-				if (item!=null){
-					System.out.println("Item != null");
-					if (item.hasItemMeta()){
-						System.out.println("Item has Meta");
-						if (item.getItemMeta().hasLore()){
-							System.out.println("Item has Lore");
-							if (item.getItemMeta().getLore().contains(MPMAttributeType.DEATH_DEFYING)){
-								System.out.println("Item has DEATH DEFYING");
-								item.setDurability((short) (item.getDurability()*0.15));
-								player.getInventory().addItem(item.clone());
-								event.getDrops().remove(item);
-							}else if (item.getItemMeta().getLore().contains(MPMAttributeType.DEVILS_TAKE)){
-								System.out.println("Item has DEVILS TAKE");
-								event.getDrops().remove(item);	
-							}
+			for (ItemStack item : event.getDrops()){
+				if (item.hasItemMeta()){
+					if (item.getItemMeta().hasLore()){
+						if (item.getItemMeta().getLore().contains(MPMAttributeType.DEATH_DEFYING)){
+							dropsToRemove.add(item);
+							dropsToAdd.add(item);
+						}else if(item.getItemMeta().getLore().contains(MPMAttributeType.DEVILS_TAKE)){
+							dropsToRemove.add(item);
 						}
 					}
 				}
 			}
+			for (ItemStack item : dropsToAdd){
+				player.getInventory().addItem(item);
+			}
+			
+			for (ItemStack item : dropsToRemove){
+				event.getDrops().remove(item);
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onHeroEnterCombatEvent(HeroEnterCombatEvent event){
+		Hero hero = event.getHero();
+		Player player = hero.getPlayer();
+		if (MPMTools.playerAttributes.containsKey(player)){
+			if (MPMTools.playerAttributes.get(player).containsKey(MPMAttributeType.DRAGON_GROWL)){
+				player.getWorld().playSound(player.getLocation(), Sound.ENDERDRAGON_GROWL, 1, 1);	
+			}
+		
 		}
 	}
 	
