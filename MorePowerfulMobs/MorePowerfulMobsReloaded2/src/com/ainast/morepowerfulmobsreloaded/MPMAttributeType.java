@@ -1,5 +1,7 @@
 package com.ainast.morepowerfulmobsreloaded;
 
+import org.bukkit.ChatColor;
+
 public class MPMAttributeType {
 	
 	final static String RESISTANCE_TO_DARK = "Resistance to DARK";
@@ -41,7 +43,7 @@ public class MPMAttributeType {
 	final static String INCREASE_KNOCKBACK_RESISTANCE = "Increase KNOCKBACK RESISTANCE";
 	final static String DECREASE_KNOCKBACK_RESISTANCE = "Decrease KNOCKBACK RESISTANCE";
 	
-	final static String DEATH_DEFYING = "DEATH DEFYING";
+	final static String DEATH_DEFYING = ChatColor.GOLD + "Soul Bound";
 	final static String DEVILS_TAKE = "DEVILS TAKE";
 	final static String MITCHIRINEKO_MARCH = "Mitchirineko March";
 	
@@ -51,4 +53,6 @@ public class MPMAttributeType {
 	
 	final static String DRAGON_GROWL = "Dragon's ROAR!";
 	final static String CAT_PURR = "CAT LOVER";
+	
+	final static String HEAL_BONUS = "HEAL Bonus";
 }

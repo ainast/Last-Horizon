@@ -45,6 +45,7 @@ import com.herocraftonline.heroes.characters.Hero;
 import com.herocraftonline.heroes.characters.skill.SkillType;
 
 public class PlayerEvents implements Listener{
+	HashMap<Player, List<ItemStack>> itemsToReadd = new HashMap<Player, List<ItemStack>>();
 	
 	@EventHandler
 	public void onCharacterDamageEvent(SkillDamageEvent event){
@@ -129,8 +130,8 @@ public class PlayerEvents implements Listener{
 	public void onHeroRegainHealthEvent(HeroRegainHealthEvent event){
 		Hero hero = event.getHero();
 		HashMap<String, Long> attributes = MPMTools.playerAttributes.get(hero.getPlayer());
-		if (attributes.containsKey("HEAL Bonus")){
-			long extraHealth = attributes.get("HEAL Bonus");
+		if (attributes.containsKey(MPMAttributeType.HEAL_BONUS)){
+			long extraHealth = attributes.get(MPMAttributeType.HEAL_BONUS);
 			event.setAmount((double) (event.getAmount() + extraHealth));
 		}	
 	}
@@ -178,29 +179,40 @@ public class PlayerEvents implements Listener{
 	public void onPlayerDeathEvent(PlayerDeathEvent event){
 		Player player = event.getEntity();
 		if (MPMTools.playerAttributes.containsKey(player)){
+			List<ItemStack> drops = new ArrayList<ItemStack>(event.getDrops());
 			List<ItemStack> dropsToRemove =  new ArrayList<ItemStack>();
 			List<ItemStack> dropsToAdd = new ArrayList<ItemStack>();
 			
-			for (ItemStack item : event.getDrops()){
+			for (ItemStack item : drops){
 				if (item.hasItemMeta()){
 					if (item.getItemMeta().hasLore()){
 						if (item.getItemMeta().getLore().contains(MPMAttributeType.DEATH_DEFYING)){
 							dropsToRemove.add(item);
-							dropsToAdd.add(item);
+							dropsToAdd.add(item);	
 						}else if(item.getItemMeta().getLore().contains(MPMAttributeType.DEVILS_TAKE)){
 							dropsToRemove.add(item);
 						}
 					}
 				}
 			}
-			for (ItemStack item : dropsToAdd){
-				player.getInventory().addItem(item);
-			}
-			
+		
+			this.itemsToReadd.put(player, dropsToAdd);			
 			for (ItemStack item : dropsToRemove){
 				event.getDrops().remove(item);
 			}
 		}
+	}
+	
+	@EventHandler
+	public void onPlayerRespawnEvent(PlayerRespawnEvent event){
+		if (itemsToReadd.containsKey(event.getPlayer())){
+			List<ItemStack> readd = itemsToReadd.get(event.getPlayer());
+			for (ItemStack item : readd){
+				event.getPlayer().getInventory().addItem(item);
+			}
+			
+			itemsToReadd.remove(event.getPlayer());
+		}	
 	}
 	
 	@EventHandler

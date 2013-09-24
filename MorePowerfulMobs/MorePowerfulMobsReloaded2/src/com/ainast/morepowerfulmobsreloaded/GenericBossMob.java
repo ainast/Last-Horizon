@@ -39,10 +39,11 @@ public class GenericBossMob implements Runnable, Listener{
 	int experience;
 	String bossName = "Shouldn't be null, I change it!";
 	String deathMessage;
+	String world = "world2";
 	
 	Random generator = new Random(System.currentTimeMillis());
 	
-	public GenericBossMob(String bossName, Location bossLocation, EntityType entityType, ItemStack weaponInHand, ItemStack[] equipment, ItemStack[] drops, int dropChance, int experience){
+	public GenericBossMob(String bossName, String world, Location bossLocation, EntityType entityType, ItemStack weaponInHand, ItemStack[] equipment, ItemStack[] drops, int dropChance, int experience){
 		this.name = bossName;
 		this.location = bossLocation;
 		this.entityType = entityType;
@@ -52,7 +53,7 @@ public class GenericBossMob implements Runnable, Listener{
 		this.dropChance = dropChance;
 		this.experience = experience;
 		this.bossName = bossName;
-		
+		this.world = world;
 		MPMTools.plugin.getServer().getPluginManager().registerEvents(this,  MPMTools.plugin);
 	}
 
@@ -69,7 +70,9 @@ public class GenericBossMob implements Runnable, Listener{
 	
 	private void spawnNewBoss() {
 		System.out.println("spawn New Boss?");
-		boss = location.getWorld().spawnCreature(location, entityType);	
+		System.out.println("location: " + this.location.toString());
+		location.setWorld(MPMTools.plugin.getServer().getWorld(this.world));
+		boss = location.getWorld().spawnCreature(this.location, this.entityType);	
 		setAlive(true);
 		equipBoss();
 		this.boss.setCustomName(this.bossName);

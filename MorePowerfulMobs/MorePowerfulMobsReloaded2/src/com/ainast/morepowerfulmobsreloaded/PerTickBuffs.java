@@ -85,7 +85,7 @@ public class PerTickBuffs implements Runnable {
 			}
 			if (attributes.containsKey(MPMAttributeType.CAT_PURR)){
 				int chance = MPMTools.generator.nextInt(100)+1;
-				if (chance<5){
+				if (chance<25){
 					p.getWorld().playSound(p.getLocation(), Sound.CAT_PURR, 1, 1);
 				}
 			}

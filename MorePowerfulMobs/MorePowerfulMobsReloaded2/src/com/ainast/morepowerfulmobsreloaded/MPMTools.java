@@ -85,6 +85,8 @@ public class MPMTools {
 		
 		possibleAttributes.add(MPMAttributeType.DRAGON_GROWL);
 		possibleAttributes.add(MPMAttributeType.CAT_PURR);
+		
+		possibleAttributes.add(MPMAttributeType.HEAL_BONUS);
 	}
 	
 	public static void calculateAttributes(Player player){
@@ -113,10 +115,10 @@ public class MPMTools {
 								HashMap<String, Long> temp = playerAttributes.get(player);
 							
 								if (playerAttributes.get(player).containsKey(attribute[0])){
-									temp.put(attribute[0], Long.parseLong(attribute[1].trim()) + playerAttributes.get(player).get(attribute[0]));
+									temp.put(attribute[0], Long.parseLong(attribute[1].trim().replace('%', ' ')) + playerAttributes.get(player).get(attribute[0]));
 									
 								}else if (!(playerAttributes.get(player).containsKey(attribute[0]))){
-									temp.put(attribute[0], Long.parseLong(attribute[1].trim()));
+									temp.put(attribute[0], Long.parseLong(attribute[1].trim().replace('%', ' ')));
 								}
 								playerAttributes.put(player, temp);
 							}
