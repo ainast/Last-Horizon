@@ -187,8 +187,14 @@ public class PlayerEvents implements Listener{
 				if (item.hasItemMeta()){
 					if (item.getItemMeta().hasLore()){
 						if (item.getItemMeta().getLore().contains(MPMAttributeType.DEATH_DEFYING)){
+							System.out.println(item.getItemMeta().getDisplayName());
+							System.out.println(item.getItemMeta().getLore().toString());
 							dropsToRemove.add(item);
-							dropsToAdd.add(item);	
+							item.setDurability((short) (item.getDurability() + 150));
+							
+							dropsToAdd.add(item);
+							
+							
 						}else if(item.getItemMeta().getLore().contains(MPMAttributeType.DEVILS_TAKE)){
 							dropsToRemove.add(item);
 						}
