@@ -1,5 +1,7 @@
 package com.ainast.morepowerfulmobsreloaded;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -24,7 +26,7 @@ import org.bukkit.potion.PotionType;
 public class BossMob implements Runnable, Listener{
 	
 	LivingEntity boss;
-	EntityType type;
+	EntityType type = EntityType.ZOMBIE;
 	String name = "Testificate";
 	ItemStack weaponInHand;
 	ItemStack[] armor;	
@@ -39,7 +41,9 @@ public class BossMob implements Runnable, Listener{
 	double y = 70;
 	double z = 0;
 	boolean potThrower = false;
-	int task;
+	boolean leader = false;
+	int potTask = 0;
+	int leaderTask = 0;
 	
 	public BossMob(){
 		MPMTools.plugin.getServer().getPluginManager().registerEvents(this,  MPMTools.plugin);
@@ -49,7 +53,14 @@ public class BossMob implements Runnable, Listener{
 	@Override
 	public void run() {
 		if (!isAlive()){
-			MPMTools.plugin.getServer().getScheduler().cancelTask(task);
+			if (potTask!=0){
+				MPMTools.plugin.getServer().getScheduler().cancelTask(potTask);
+				potTask=0;
+			}
+			if (leaderTask!=0){
+				MPMTools.plugin.getServer().getScheduler().cancelTask(leaderTask);
+				leaderTask=0;
+			}
 			boss = getLocation().getWorld().spawnCreature(getLocation(), type);
 			if (getName()!=null) boss.setCustomName(getName());
 			boss.setCustomNameVisible(true);
@@ -57,9 +68,25 @@ public class BossMob implements Runnable, Listener{
 			if (getWeaponInHand()!=null) boss.getEquipment().setItemInHand(getWeaponInHand());
 			boss.setMaxHealth(getMaxHealth());
 			if (potThrower){
-				task = MPMTools.plugin.getServer().getScheduler().scheduleSyncRepeatingTask(MPMTools.plugin, new PotThrower(boss), 20, 40);
+				potTask = MPMTools.plugin.getServer().getScheduler().scheduleSyncRepeatingTask(MPMTools.plugin, new PotThrower(boss), 20, 40);
 			}
 		}
+	}
+	
+	public void setLeader(boolean leader){
+		this.leader = true;
+	}
+	
+	public boolean getLeader(){
+		return this.leader;
+	}
+	
+	public void setPotThower(boolean potThower){
+		this.potThrower = potThrower;
+	}
+	
+	public boolean getPotThrower(){
+		return this.potThrower;
 	}
 	
 	public void setLocation(String worldName, double x, double y, double z){
@@ -195,6 +222,50 @@ public class BossMob implements Runnable, Listener{
 			sendMassDeathMessage(entity);
 			}	
 		}
+}
+
+class Leader implements Runnable, Listener{
+	LivingEntity boss;
+	EntityType subordinateType;
+	List<LivingEntity> subordinates = new ArrayList<LivingEntity>();
+	static HashMap<LivingEntity, ArrayList<LivingEntity>> subordinateList = new HashMap<LivingEntity, ArrayList<LivingEntity>>();
+	
+	public Leader(Entity entity, EntityType subordinateType){
+		boss = (LivingEntity) entity;	
+		this.subordinateType = subordinateType;
+		subordinateList.put(boss,  new ArrayList<LivingEntity>());
+	}
+	
+	@Override
+	public void run() {
+		if (this.boss!=null){
+			int chance = MPMTools.generator.nextInt(100)+1;
+			if (chance<10 || subordinateList.get(boss).size()>5){
+				ArrayList<LivingEntity> el = subordinateList.get(boss);
+				el.add(boss.getLocation().getWorld().spawnCreature(boss.getLocation(), subordinateType));
+				subordinateList.put(boss, el);
+			}
+			if (chance<20){
+				ArrayList<LivingEntity> el = subordinateList.get(boss);
+				el.add(boss.getLocation().getWorld().spawnCreature(boss.getLocation(), subordinateType));
+				subordinateList.put(boss, el);
+			}
+			if (chance<30){
+				ArrayList<LivingEntity> el = subordinateList.get(boss);
+				el.add(boss.getLocation().getWorld().spawnCreature(boss.getLocation(), subordinateType));
+				subordinateList.put(boss, el);}			
+		}
+	}
+	
+	@EventHandler
+	public void onEntityDeathEvent(EntityDeathEvent event){
+		List<LivingEntity> subs = subordinateList.get(boss);
+		
+		for (LivingEntity entity : subs){
+			entity.damage(10000);
+		}
+				
+	}
 }
 
 class PotThrower implements Runnable{

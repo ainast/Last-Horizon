@@ -27,10 +27,6 @@ public class MorePowerfulMobs extends JavaPlugin{
 		//MUST REGISTER BOSS MOBS BEFORE REGISTERING OTHER EVENTS!!!
 		//IF THE MOBS ERROR OUT, MULTIVERSE MUST BE LOADED BEFORE THIS RUNS. 
 		//IF THE WORLD WASN'T GENERATED THEN IT CAN RETURN NULL FOR THE WORLD.
-		
-		for (World world : getServer().getWorlds()){
-			System.out.println("World: " + world.getName());
-		}
 
 		spawnUncleFrank();
 		spawnMadScientistAbel();
