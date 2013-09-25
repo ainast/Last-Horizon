@@ -27,6 +27,7 @@ public class PerTickBuffs implements Runnable {
 			MPMTools.calculateAttributes(p);
 			HashMap<String, Long> attributes = MPMTools.playerAttributes.get(p);
 			Hero h = MPMTools.getHeroes().getCharacterManager().getHero(p);
+			
 			h.clearHealthBonuses();
 			h.clearMaxMana();
 			

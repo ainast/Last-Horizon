@@ -191,7 +191,6 @@ public class PlayerEvents implements Listener{
 							System.out.println(item.getItemMeta().getLore().toString());
 							dropsToRemove.add(item);
 							item.setDurability((short) (item.getDurability() + ItemTools.durabilityModifier(item.getType())));
-							
 							dropsToAdd.add(item);
 							
 							
