@@ -293,6 +293,7 @@ class PotThrower implements Runnable{
 						potion.getEffects().add(new PotionEffect(PotionEffectType.HARM, 50, 20));
 						potion.setVelocity(boss.getLocation().getDirection().multiply(2));
 						boss.launchProjectile(ThrownPotion.class).setMetadata("HARM", new FixedMetadataValue(MPMTools.plugin, true));
+						
 					}
 				}	
 			}
