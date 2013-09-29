@@ -25,8 +25,8 @@ public class PerTickBuffs implements Runnable {
 		Player[] playersOnline =  Bukkit.getOnlinePlayers();
 		for (Player p : playersOnline){
 			Hero h = MPMTools.getHeroes().getCharacterManager().getHero(p);
-			h.resetMaxHP();
-			h.clearHealthBonuses();
+			//h.resetMaxHP();
+			//h.clearHealthBonuses();
 			h.clearMaxMana();
 			if (p.isDead()) continue;
 			
