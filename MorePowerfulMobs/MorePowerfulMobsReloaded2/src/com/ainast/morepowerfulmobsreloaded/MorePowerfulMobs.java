@@ -34,7 +34,7 @@ public class MorePowerfulMobs extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new MobEvents(), this);
 		getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
 	
-		getServer().getScheduler().runTaskTimer(this, new PerTickBuffs(), 10, 10);
+		getServer().getScheduler().runTaskTimer(this, new PerTickBuffs(), 20, 20);
 
 	}
 

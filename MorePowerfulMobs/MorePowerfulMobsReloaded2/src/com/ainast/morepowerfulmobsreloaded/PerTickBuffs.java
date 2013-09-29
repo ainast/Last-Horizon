@@ -42,8 +42,10 @@ public class PerTickBuffs implements Runnable {
 			
 			if (attributes.containsKey(MPMAttributeType.MAXIMUM_HEALTH)){
 				
-				h.addMaxHealth("MPM", attributes.get(MPMAttributeType.MAXIMUM_HEALTH).doubleValue());
-				p.setHealth(1);
+				p.setMaxHealth(attributes.get(MPMAttributeType.MAXIMUM_HEALTH).doubleValue());
+				if (p.getHealth()>attributes.get(MPMAttributeType.MAXIMUM_HEALTH).doubleValue()){
+					p.setHealth(attributes.get(MPMAttributeType.MAXIMUM_HEALTH));
+				}
 			}
 			
 			if (attributes.containsKey(MPMAttributeType.REDUCE_COOLDOWN_ON_JUMP)){

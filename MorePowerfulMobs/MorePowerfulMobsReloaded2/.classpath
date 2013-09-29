@@ -4,7 +4,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="lib" path="/Users/jaredtorrez/Desktop/Bukkit/spigot.jar"/>
-	<classpathentry kind="lib" path="/Users/jaredtorrez/Desktop/Bukkit/plugins/Heroes-1.5.3.1.jar">
+	<classpathentry kind="lib" path="/Users/jaredtorrez/Desktop/Bukkit/plugins/Heroes-1.5.3.1.jar" sourcepath="/Users/jaredtorrez/Downloads/Heroes-javadoc.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:file:/Users/jaredtorrez/Downloads/Heroes-javadoc.jar!/"/>
 		</attributes>

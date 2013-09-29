@@ -284,7 +284,7 @@ public class PlayerEvents implements Listener{
 			}else if(MPMTools.playerAttributes.get(player).containsKey(MPMAttributeType.GIVE_RANDOM_ITEM)){
 				ItemStack item = new ItemStack(Material.AIR);
 				
-				int chance = MPMTools.generator.nextInt(7)+1;
+				int chance = MPMTools.generator.nextInt(14)+1;
 				if (chance==1){
 					player.getInventory().addItem(TieredItems.getTier1MrAmazingsSpecialHat());
 				}else if (chance==2){
@@ -297,7 +297,7 @@ public class PlayerEvents implements Listener{
 					player.getInventory().addItem(TieredItems.getTier1PlateMail());
 				}else if (chance==6){
 					player.getInventory().addItem(TieredItems.getTier1PristinePlateMail());
-				}else if (chance==7){
+				}else if (chance>7){
 					player.getInventory().addItem(TieredItems.getTier1CastingWant());
 				}
 				player.updateInventory();

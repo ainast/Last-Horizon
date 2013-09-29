@@ -16,18 +16,21 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 public class TieredItems {
 
 	public static ItemStack getTier1CastingWant(){
-		ItemStack item = new ItemStack(Material.LEATHER_HELMET);
+		ItemStack item = new ItemStack(Material.BLAZE_ROD);
 		ItemMeta itemMeta = item.getItemMeta();
 		List<String> lore = new ArrayList<String>();
 		
-		itemMeta.setDisplayName(ChatColor.GOLD + "[T1] Casting Wand");
+		itemMeta.setDisplayName(ChatColor.MAGIC + "[T1] Casting Wand");
 		lore.add(ChatColor.ITALIC.GOLD + "I'm not sure about this...");
 		lore.add(MPMAttributeType.DEATH_DEFYING);
 		lore.add(MPMAttributeType.REDUCE_COOLDOWN_ON_FIREBALL + ": 1");
 		lore.add(MPMAttributeType.MANA_REGENERATION + ": 35");
-		lore.add(MPMAttributeType.MAXIMUM_MANA + ": -50");
-		lore.add(MPMAttributeType.MAXIMUM_HEALTH + ": -50");
+		lore.add(MPMAttributeType.MAXIMUM_MANA + ": 1");
+		lore.add(MPMAttributeType.MAXIMUM_HEALTH + ": 1");
 		
+		itemMeta.setLore(lore);
+		item.setItemMeta(itemMeta);
+
 		return item;
 	}
 	
@@ -53,15 +56,15 @@ public class TieredItems {
 		List<String> lore = new ArrayList<String>();
 		lore.add(ChatColor.GOLD + "" + ChatColor.ITALIC + "With Love, Frank");
 		lore.add(MPMAttributeType.DEATH_DEFYING);
-		lore.add(MPMAttributeType.MAXIMUM_HEALTH + ": -99");
-		lore.add(MPMAttributeType.MAXIMUM_MANA + ": -99");
+		lore.add(MPMAttributeType.MAXIMUM_HEALTH + ": 1");
+		lore.add(MPMAttributeType.MAXIMUM_MANA + ": 1");
 		itemMeta.setDisplayName(ChatColor.GOLD + "[T1] Cursed Running Shoes");
 		itemMeta.setLore(lore);
 		item.setItemMeta(itemMeta);
 		LeatherArmorMeta lim = (LeatherArmorMeta) item.getItemMeta();
 		lim.setColor(Color.BLACK);
 		item.setItemMeta(lim);
-		item = SimpleAttributesAPI.addItemAttribute(item, "[T1] Pristine Plate Mail" ,  AttributeType.GENERIC_MOVEMENT_SPEED, 4);
+		item = SimpleAttributesAPI.addItemAttribute(item, "[T1] Pristine Plate Mail" ,  AttributeType.GENERIC_MOVEMENT_SPEED, .4);
 		return item;
 	}
 	
@@ -72,9 +75,9 @@ public class TieredItems {
 		List<String> lore = new ArrayList<String>();
 		lore.add(ChatColor.ITALIC + " " + ChatColor.DARK_PURPLE + "Life is Hell!");
 		lore.add(MPMAttributeType.DEVILS_TAKE);
-		lore.add(MPMAttributeType.MAXIMUM_HEALTH + ": -50");
-		lore.add(MPMAttributeType.MAXIMUM_MANA + ": -50");
-		itemMeta.setDisplayName("[TX] Blood Sword");
+		lore.add(MPMAttributeType.MAXIMUM_HEALTH + ": 1");
+		lore.add(MPMAttributeType.MAXIMUM_MANA + ": 1");
+		itemMeta.setDisplayName(ChatColor.YELLOW + "[TX] Blood Sword");
 		itemMeta.setLore(lore);
 		item.setItemMeta(itemMeta);
 		item = SimpleAttributesAPI.addItemAttribute(item, "[T1] Pristine Plate Mail" ,  AttributeType.GENERIC_MOVEMENT_SPEED, -0.1);
