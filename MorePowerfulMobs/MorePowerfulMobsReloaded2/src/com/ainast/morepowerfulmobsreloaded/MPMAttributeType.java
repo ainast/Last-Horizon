@@ -15,6 +15,7 @@ public class MPMAttributeType {
 	final static String RESISTANCE_TO_MAGIC = "Resistance to MAGIC"; //percent
 	
 	final static String REDUCE_COOLDOWN_ON_JUMP = "Reduce cooldown on JUMP";
+	final static String REDUCE_COOLDOWN_ON_FIREBALL = "Reduce cooldown on FIREBALL";
 	
 	final static String MAXIMUM_MANA = "Maximum MANA"; 
 	final static String MAXIMUM_HEALTH = "Maximum HEALTH";
@@ -55,4 +56,7 @@ public class MPMAttributeType {
 	final static String CAT_PURR = "CAT LOVER";
 	
 	final static String HEAL_BONUS = "HEAL Bonus";
+	
+	final static String GIVE_RANDOM_ITEM = "RANDOMIZER";
+	
 }

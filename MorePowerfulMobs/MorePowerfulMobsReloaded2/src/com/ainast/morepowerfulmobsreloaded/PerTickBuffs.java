@@ -24,19 +24,26 @@ public class PerTickBuffs implements Runnable {
 		if (Bukkit.getOnlinePlayers()==null) return;
 		Player[] playersOnline =  Bukkit.getOnlinePlayers();
 		for (Player p : playersOnline){
-			MPMTools.calculateAttributes(p);
-			HashMap<String, Long> attributes = MPMTools.playerAttributes.get(p);
 			Hero h = MPMTools.getHeroes().getCharacterManager().getHero(p);
-			
+			h.resetMaxHP();
 			h.clearHealthBonuses();
 			h.clearMaxMana();
+			if (p.isDead()) continue;
+			
+			MPMTools.calculateAttributes(p);
+			HashMap<String, Long> attributes = MPMTools.playerAttributes.get(p);
+
+			
+
 			
 			if (attributes.containsKey(MPMAttributeType.MAXIMUM_MANA)){
 				h.addMaxMana("MPM", attributes.get(MPMAttributeType.MAXIMUM_MANA).intValue());
 			}
 			
 			if (attributes.containsKey(MPMAttributeType.MAXIMUM_HEALTH)){
+				
 				h.addMaxHealth("MPM", attributes.get(MPMAttributeType.MAXIMUM_HEALTH).doubleValue());
+				p.setHealth(1);
 			}
 			
 			if (attributes.containsKey(MPMAttributeType.REDUCE_COOLDOWN_ON_JUMP)){
@@ -44,6 +51,13 @@ public class PerTickBuffs implements Runnable {
 				if (cooldown<0) cooldown = 0;
 				h.setCooldown("jump", cooldown);
 			}
+			
+			if (attributes.containsKey(MPMAttributeType.REDUCE_COOLDOWN_ON_FIREBALL)){
+				long cooldown = (h.getCooldown("fireball") - attributes.get(MPMAttributeType.REDUCE_COOLDOWN_ON_FIREBALL)*1000);
+				if (cooldown<0) cooldown = 0;
+				h.setCooldown("fireball", cooldown);
+			}
+			
 			//
 			// add more here.  Same format for reducing cooldowns on other skills.
 			//
@@ -87,7 +101,7 @@ public class PerTickBuffs implements Runnable {
 			if (attributes.containsKey(MPMAttributeType.CAT_PURR)){
 				int chance = MPMTools.generator.nextInt(100)+1;
 				if (chance<25){
-					p.getWorld().playSound(p.getLocation(), Sound.CAT_PURR, 1, 1);
+					p.getWorld().playSound(p.getLocation(), Sound.CAT_PURR, 1, 5);
 				}
 			}
 		}

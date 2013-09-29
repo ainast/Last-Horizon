@@ -47,6 +47,7 @@ public class MPMTools {
 		possibleAttributes.add(MPMAttributeType.RESISTANCE_TO_MAGIC);
 		
 		possibleAttributes.add(MPMAttributeType.REDUCE_COOLDOWN_ON_JUMP);
+		possibleAttributes.add(MPMAttributeType.REDUCE_COOLDOWN_ON_FIREBALL);
 		
 		possibleAttributes.add(MPMAttributeType.MAXIMUM_MANA);
 		possibleAttributes.add(MPMAttributeType.MAXIMUM_HEALTH);
@@ -87,6 +88,8 @@ public class MPMTools {
 		possibleAttributes.add(MPMAttributeType.CAT_PURR);
 		
 		possibleAttributes.add(MPMAttributeType.HEAL_BONUS);
+		
+		possibleAttributes.add(MPMAttributeType.GIVE_RANDOM_ITEM);
 	}
 	
 	public static void calculateAttributes(Player player){
@@ -115,10 +118,10 @@ public class MPMTools {
 								HashMap<String, Long> temp = playerAttributes.get(player);
 							
 								if (playerAttributes.get(player).containsKey(attribute[0])){
-									temp.put(attribute[0], Long.parseLong(attribute[1].trim().replace('%', ' ')) + playerAttributes.get(player).get(attribute[0]));
+									temp.put(attribute[0], Long.parseLong(attribute[1].replace('%', ' ').trim()) + playerAttributes.get(player).get(attribute[0]));
 									
 								}else if (!(playerAttributes.get(player).containsKey(attribute[0]))){
-									temp.put(attribute[0], Long.parseLong(attribute[1].trim().replace('%', ' ')));
+									temp.put(attribute[0], Long.parseLong(attribute[1].replace('%', ' ').trim()));
 								}
 								playerAttributes.put(player, temp);
 							}

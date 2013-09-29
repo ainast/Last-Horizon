@@ -1,3 +1,5 @@
 name: MorePowerfulMobs
 main: com.ainast.morepowerfulmobsreloaded.MorePowerfulMobs
 version: 1
+
+depend: [Heroes]

@@ -16,6 +16,7 @@ import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Sequence;
 
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -31,6 +32,7 @@ import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -46,6 +48,19 @@ import com.herocraftonline.heroes.characters.skill.SkillType;
 
 public class PlayerEvents implements Listener{
 	HashMap<Player, List<ItemStack>> itemsToReadd = new HashMap<Player, List<ItemStack>>();
+	
+	@EventHandler
+	public void onPlayerJoinServerEvent(PlayerJoinEvent event){
+		Player player = event.getPlayer();
+		Hero hero = MPMTools.getHeroes().getCharacterManager().getHero(player);
+	
+		hero.clearMaxMana();
+		hero.clearHealthBonuses();
+		hero.resetMaxHP();
+		
+		if (MPMTools.playerAttributes.containsKey(player)) MPMTools.playerAttributes.get(player).clear();
+	}
+	
 	
 	@EventHandler
 	public void onCharacterDamageEvent(SkillDamageEvent event){
@@ -121,8 +136,11 @@ public class PlayerEvents implements Listener{
 		Hero hero = event.getHero();
 		HashMap<String, Long> attributes = MPMTools.playerAttributes.get(hero.getPlayer());
 		if (attributes.containsKey(MPMAttributeType.MANA_REGENERATION)){
+			long oldAmount = event.getAmount();
 			long extraRegen = attributes.get(MPMAttributeType.MANA_REGENERATION);
-			event.setAmount((int) (event.getAmount() + extraRegen));
+			long regenModifier = extraRegen + oldAmount;
+			if (regenModifier<1) regenModifier = 0;
+			event.setAmount((int) (regenModifier));
 		}	
 	}
 	
@@ -145,6 +163,9 @@ public class PlayerEvents implements Listener{
 			if (MPMTools.playerAttributes.get(player).containsKey(MPMAttributeType.HEALTH_REGENERATION)){
 				double oldAmount = event.getAmount();
 				double modifier = MPMTools.playerAttributes.get(player).get(MPMAttributeType.HEALTH_REGENERATION);
+				
+				double setAmount = oldAmount + modifier;
+				if (setAmount<1) setAmount = 0;
 				event.setAmount(oldAmount + modifier);
 			}
 		}
@@ -198,7 +219,9 @@ public class PlayerEvents implements Listener{
 							dropsToRemove.add(item);
 						}
 					}
+					MPMTools.playerAttributes.get(player).clear();
 				}
+				
 			}
 		
 			this.itemsToReadd.put(player, dropsToAdd);			
@@ -258,6 +281,26 @@ public class PlayerEvents implements Listener{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+			}else if(MPMTools.playerAttributes.get(player).containsKey(MPMAttributeType.GIVE_RANDOM_ITEM)){
+				ItemStack item = new ItemStack(Material.AIR);
+				
+				int chance = MPMTools.generator.nextInt(7)+1;
+				if (chance==1){
+					player.getInventory().addItem(TieredItems.getTier1MrAmazingsSpecialHat());
+				}else if (chance==2){
+					player.getInventory().addItem(TieredItems.getBloodSword());
+				}else if (chance==3){
+					player.getInventory().addItem(TieredItems.getTier1CursedRunningShoes());
+				}else if (chance==4){
+					player.getInventory().addItem(TieredItems.getTier1DentedPlateMail());
+				}else if (chance==5){
+					player.getInventory().addItem(TieredItems.getTier1PlateMail());
+				}else if (chance==6){
+					player.getInventory().addItem(TieredItems.getTier1PristinePlateMail());
+				}else if (chance==7){
+					player.getInventory().addItem(TieredItems.getTier1CastingWant());
+				}
+				player.updateInventory();
 			}
 		}
 	}

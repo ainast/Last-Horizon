@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -22,6 +23,8 @@ import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
+
+import com.sk89q.worldedit.blocks.BlockType;
 
 public class BossMob implements Runnable, Listener{
 	
@@ -62,13 +65,16 @@ public class BossMob implements Runnable, Listener{
 				leaderTask=0;
 			}
 			boss = getLocation().getWorld().spawnCreature(getLocation(), type);
-			if (getName()!=null) boss.setCustomName(getName());
+			if (getName()!=null) boss.setCustomName(ChatColor.GOLD + getName());
 			boss.setCustomNameVisible(true);
 			if (getArmor()!=null) boss.getEquipment().setArmorContents(getArmor());
 			if (getWeaponInHand()!=null) boss.getEquipment().setItemInHand(getWeaponInHand());
 			boss.setMaxHealth(getMaxHealth());
 			if (potThrower){
 				potTask = MPMTools.plugin.getServer().getScheduler().scheduleSyncRepeatingTask(MPMTools.plugin, new PotThrower(boss), 20, 40);
+			}
+			if (leader){
+				leaderTask = MPMTools.plugin.getServer().getScheduler().scheduleSyncRepeatingTask(MPMTools.plugin, new Leader(boss, EntityType.ENDER_SIGNAL), 20, 20);
 			}
 		}
 	}
@@ -208,7 +214,7 @@ public class BossMob implements Runnable, Listener{
 	}
 	
 	private double getDeathMessageRadius() {
-		// TODO Auto-generated method stub
+
 		return deathMessageRadius;
 	}
 
@@ -240,7 +246,7 @@ class Leader implements Runnable, Listener{
 	public void run() {
 		if (this.boss!=null){
 			int chance = MPMTools.generator.nextInt(100)+1;
-			if (chance<10 || subordinateList.get(boss).size()>5){
+			if (chance<10 || subordinateList.get(boss).size()>=3){
 				ArrayList<LivingEntity> el = subordinateList.get(boss);
 				el.add(boss.getLocation().getWorld().spawnCreature(boss.getLocation(), subordinateType));
 				subordinateList.put(boss, el);
@@ -253,7 +259,8 @@ class Leader implements Runnable, Listener{
 			if (chance<30){
 				ArrayList<LivingEntity> el = subordinateList.get(boss);
 				el.add(boss.getLocation().getWorld().spawnCreature(boss.getLocation(), subordinateType));
-				subordinateList.put(boss, el);}			
+				subordinateList.put(boss, el);
+			}			
 		}
 	}
 	
@@ -262,9 +269,14 @@ class Leader implements Runnable, Listener{
 		List<LivingEntity> subs = subordinateList.get(boss);
 		
 		for (LivingEntity entity : subs){
-			entity.damage(10000);
+			if (event.getEntity()==entity){
+				entity.damage(10000);
+				subs.remove(event.getEntity());
+			}
 		}
-				
+		
+		subordinateList.get(boss).clear();
+		subordinateList.get(boss).add((LivingEntity) subs);			
 	}
 }
 
@@ -277,23 +289,33 @@ class PotThrower implements Runnable{
 	@Override
 	public void run(){
 		if (this.boss!=null){
-			System.out.println("Throw Potion");
 			int chance = MPMTools.generator.nextInt(100)+1;
 			if (chance<101){
-				System.out.println("Throw Potion at Entity");
-				List<Entity> entityList = boss.getNearbyEntities(10, 10, 10);
+				List<Entity> entityList = boss.getNearbyEntities(15, 15, 15);
 				
 				for (Entity entity : entityList){
+					if (!(entity instanceof Player)) continue;
+					
 					chance = MPMTools.generator.nextInt(100)+1;
-					System.out.println(chance);
-					if (chance<=20){
+					if (chance<=45){
 						
 						ThrownPotion potion = boss.launchProjectile(ThrownPotion.class);
 						potion.setShooter(boss);
-						potion.getEffects().add(new PotionEffect(PotionEffectType.HARM, 50, 20));
+						potion.getEffects().add(new PotionEffect(PotionEffectType.SLOW, 50, 20));
 						potion.setVelocity(boss.getLocation().getDirection().multiply(2));
 						boss.launchProjectile(ThrownPotion.class).setMetadata("HARM", new FixedMetadataValue(MPMTools.plugin, true));
 						
+						chance = MPMTools.generator.nextInt(3)+1;
+						
+						PotionEffect potionEffect;
+						if (chance==1){
+							potionEffect = new PotionEffect(PotionEffectType.SLOW, 60*3, 1);
+						}else if (chance==2){
+							potionEffect = new PotionEffect(PotionEffectType.POISON, 60*3, 1);
+						}else{
+							potionEffect = new PotionEffect(PotionEffectType.WEAKNESS, 60*3, 1);
+						}
+						((LivingEntity) entity).addPotionEffect(potionEffect);
 					}
 				}	
 			}

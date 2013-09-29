@@ -28,13 +28,13 @@ public class MorePowerfulMobs extends JavaPlugin{
 		//IF THE MOBS ERROR OUT, MULTIVERSE MUST BE LOADED BEFORE THIS RUNS. 
 		//IF THE WORLD WASN'T GENERATED THEN IT CAN RETURN NULL FOR THE WORLD.
 
-		spawnUncleFrank();
-		spawnMadScientistAbel();
+		//spawnUncleFrank();
+		//spawnMadScientistAbel();
 				
 		getServer().getPluginManager().registerEvents(new MobEvents(), this);
 		getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
 	
-		getServer().getScheduler().runTaskTimer(this, new PerTickBuffs(), 400, 20);
+		getServer().getScheduler().runTaskTimer(this, new PerTickBuffs(), 10, 10);
 
 	}
 
@@ -77,6 +77,7 @@ public class MorePowerfulMobs extends JavaPlugin{
 		msbm.setDeathMessageRadius(30);
 		msbm.setType(EntityType.SKELETON);
 		msbm.potThrower = true;
+		msbm.setLeader(true);
 		getServer().getScheduler().runTaskTimer(this, msbm, 300, 100);	
 	}
 
