@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.sound.midi.InvalidMidiDataException;
@@ -36,6 +37,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import com.herocraftonline.heroes.api.events.ExperienceChangeEvent;
 import com.herocraftonline.heroes.api.events.HeroEnterCombatEvent;
@@ -125,6 +128,29 @@ public class PlayerEvents implements Listener{
 				modifiedDamage += oldDamage * (value/100.0);
 			}
 		}
+		
+		if (attributes.containsKey(MPMAttributeType.POISONOUS)){
+			long value = attributes.get(MPMAttributeType.POISONOUS);
+			int chance = MPMTools.generator.nextInt(100)+1;
+			
+			if (chance<=value && event.getEntity() instanceof Player){
+				Player p = (Player) event.getEntity();
+				Hero h = MPMTools.getHeroes().getCharacterManager().getHero(p);
+				p.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 60, 3, true));
+			}
+		}
+		
+		if (attributes.containsKey(MPMAttributeType.BLINDING)){
+			long value = attributes.get(MPMAttributeType.BLINDING);
+			int chance = MPMTools.generator.nextInt(100)+1;
+			
+			if (chance<=value && event.getEntity() instanceof Player){
+				Player p = (Player) event.getEntity();
+				Hero h = MPMTools.getHeroes().getCharacterManager().getHero(p);
+				p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 60, 3, true));
+			}
+		}
+		
 		System.out.println("Damage: " + oldDamage);
 		System.out.println("modifiedDamage: " + modifiedDamage);
 		System.out.println("Total: " + (oldDamage-modifiedDamage));
@@ -158,8 +184,12 @@ public class PlayerEvents implements Listener{
 	public void onPlayerRegainHealthEvent(EntityRegainHealthEvent event){
 		if (!(event.getEntity() instanceof Player)) return;
 		Player player = (Player) event.getEntity();
-		
+		System.out.println(player.getName() + " has regenerated " + event.getAmount() + " health");
 		if (MPMTools.playerAttributes.containsKey(player)){
+			if (event.getAmount()>player.getMaxHealth()){
+				event.setAmount(player.getMaxHealth());
+			}
+			
 			if (MPMTools.playerAttributes.get(player).containsKey(MPMAttributeType.HEALTH_REGENERATION)){
 				double oldAmount = event.getAmount();
 				double modifier = MPMTools.playerAttributes.get(player).get(MPMAttributeType.HEALTH_REGENERATION);
@@ -251,7 +281,6 @@ public class PlayerEvents implements Listener{
 			if (MPMTools.playerAttributes.get(player).containsKey(MPMAttributeType.DRAGON_GROWL)){
 				player.getWorld().playSound(player.getLocation(), Sound.ENDERDRAGON_GROWL, 1, 1);	
 			}
-		
 		}
 	}
 	
@@ -282,24 +311,7 @@ public class PlayerEvents implements Listener{
 					e1.printStackTrace();
 				}
 			}else if(MPMTools.playerAttributes.get(player).containsKey(MPMAttributeType.GIVE_RANDOM_ITEM)){
-				ItemStack item = new ItemStack(Material.AIR);
-				
-				int chance = MPMTools.generator.nextInt(14)+1;
-				if (chance==1){
-					player.getInventory().addItem(TieredItems.getTier1MrAmazingsSpecialHat());
-				}else if (chance==2){
-					player.getInventory().addItem(TieredItems.getBloodSword());
-				}else if (chance==3){
-					player.getInventory().addItem(TieredItems.getTier1CursedRunningShoes());
-				}else if (chance==4){
-					player.getInventory().addItem(TieredItems.getTier1DentedPlateMail());
-				}else if (chance==5){
-					player.getInventory().addItem(TieredItems.getTier1PlateMail());
-				}else if (chance==6){
-					player.getInventory().addItem(TieredItems.getTier1PristinePlateMail());
-				}else if (chance>7){
-					player.getInventory().addItem(TieredItems.getTier1CastingWant());
-				}
+				player.getInventory().addItem(TieredItems.getRandomItem(100));
 				player.updateInventory();
 			}
 		}

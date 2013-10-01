@@ -80,9 +80,8 @@ public class MPMTools {
 		possibleAttributes.add(MPMAttributeType.DEVILS_TAKE);
 		possibleAttributes.add(MPMAttributeType.MITCHIRINEKO_MARCH);
 		
-		possibleAttributes.add(MPMAttributeType.POISONOUS);  //unimplemented
-		possibleAttributes.add(MPMAttributeType.BLINDING); //unimplimented
-		possibleAttributes.add(MPMAttributeType.HEALING); //unimplemented
+		possibleAttributes.add(MPMAttributeType.POISONOUS);
+		possibleAttributes.add(MPMAttributeType.BLINDING);
 		
 		possibleAttributes.add(MPMAttributeType.DRAGON_GROWL);
 		possibleAttributes.add(MPMAttributeType.CAT_PURR);

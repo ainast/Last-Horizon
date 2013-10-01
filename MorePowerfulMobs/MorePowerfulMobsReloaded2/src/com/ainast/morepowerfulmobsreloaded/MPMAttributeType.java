@@ -37,23 +37,23 @@ public class MPMAttributeType {
 	final static String FIRE_RESISTANCE_1 = "RESISTANCE TO FIRE I";
 	final static String FIRE_RESISTANCE_2 = "RESISTANCE TO FIRE II";
 	
-	final static String INCREASE_ATTACK_DAMAGE = "Increase ATTACK DAMAGE";
-	final static String DECREASE_ATTACK_DAMAGE = "Decrease ATTACK DAMAGE";
-	final static String INCREASE_MOVEMENT_SPEED = "Increase MOVEMENT SPEED";
-	final static String DECREASE_MOVEMENT_SPEED = "Decrease MOVEMENT SPEED";
-	final static String INCREASE_KNOCKBACK_RESISTANCE = "Increase KNOCKBACK RESISTANCE";
-	final static String DECREASE_KNOCKBACK_RESISTANCE = "Decrease KNOCKBACK RESISTANCE";
+	final static String INCREASE_ATTACK_DAMAGE = "Increase ATTACK DAMAGE";//unimplemented
+	final static String DECREASE_ATTACK_DAMAGE = "Decrease ATTACK DAMAGE";//unimplemented
+	final static String INCREASE_MOVEMENT_SPEED = "Increase MOVEMENT SPEED";//unimplemented
+	final static String DECREASE_MOVEMENT_SPEED = "Decrease MOVEMENT SPEED";//unimplemented
+	final static String INCREASE_KNOCKBACK_RESISTANCE = "Increase KNOCKBACK RESISTANCE";//unimplemented
+	final static String DECREASE_KNOCKBACK_RESISTANCE = "Decrease KNOCKBACK RESISTANCE";//unimplemented
 	
-	final static String DEATH_DEFYING = ChatColor.GOLD + "Soul Bound";
-	final static String DEVILS_TAKE = "DEVILS TAKE";
+	final static String DEATH_DEFYING = ChatColor.GOLD + "Soul Bound";  //ITEM STAYS IN PLAYERS INVENTORY ON DEATH, LOOSES DURABILITY
+	final static String DEVILS_TAKE = "DEVILS TAKE"; //ITEM IS LOST FOREVER ON PLAYERS DEATH.
 	final static String MITCHIRINEKO_MARCH = "Mitchirineko March";
 	
-	final static String POISONOUS = "Poisonous";
-	final static String BLINDING = "Blinding";
-	final static String HEALING = "Healing";
+	final static String POISONOUS = "POISONOUS";
+	final static String BLINDING = "BLINDING";
+	
 	
 	final static String DRAGON_GROWL = "Dragon's ROAR!";
-	final static String CAT_PURR = "CAT LOVER";
+	final static String CAT_PURR = "CAT LOVER";  //CONTINUOUSLY PURRING SWORD.
 	
 	final static String HEAL_BONUS = "HEAL Bonus";
 	

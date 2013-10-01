@@ -14,7 +14,168 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public class TieredItems {
+	
+	
+	
+	public static ItemStack getRandomItem(int maxChance){
+		ItemStack item = new ItemStack(getRandomMaterial());
+		ItemMeta itemMeta = item.getItemMeta();
+		List<String> lore  = new ArrayList<String>();
+		
+		int chance = MPMTools.generator.nextInt(maxChance)+1;
+		int i = 0;
+		while(chance>0 && i<5){
+			int chance2 = MPMTools.generator.nextInt(100)+1;
+			System.out.println("Chance: " + chance + "\t Chance2: " + chance2);
+			if (chance2 <= chance){
+				if (chance2<=10){
+					int chance3 = MPMTools.generator.nextInt(3)+1;
+					if (chance3==1){
+						lore.add(MPMAttributeType.DRAGON_GROWL);
+					}else if (chance3==2){
+						lore.add(MPMAttributeType.DEATH_DEFYING);
+					}else if (chance3==3){
+						lore.add(MPMAttributeType.INCREASE_EXPERIENCE + ": " + MPMTools.generator.nextInt(30)+1);
+					}	
+				}else if (chance2<=30){
+					int chance3 = MPMTools.generator.nextInt(3)+1;
+					if (chance3==1){
+						lore.add(MPMAttributeType.FIRE_RESISTANCE_1);
+					}else if (chance3==2){
+						lore.add(MPMAttributeType.RESISTANCE_TO_DARK + ": " + MPMTools.generator.nextInt(20)+1);
+					}else if (chance3==3){
+						lore.add(MPMAttributeType.RESISTANCE_TO_MAGIC + ": " + MPMTools.generator.nextInt(20)+1);
+					}
+				}else if (chance2<=70){
+					int chance3 = MPMTools.generator.nextInt(3)+1;
+					if (chance3==1){
+						lore.add(MPMAttributeType.MANA_REGENERATION + ": " + MPMTools.generator.nextInt(10)+1);
+					}else if (chance3==2){
+						lore.add(MPMAttributeType.POISONOUS + ":" + MPMTools.generator.nextInt(10)+1);
+					}
+				}
+				chance = chance - chance2;
+			}
+			i++;
+		}
+		
+		
+		if (lore.size()==0) return item;
+		itemMeta.setDisplayName(ChatColor.DARK_RED + getRandomItemName());
+		itemMeta.setLore(lore);
+		item.setItemMeta(itemMeta);
+		return item;
+	}
+	
+	private static String getRandomItemName() {
+		String message = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?".replace('?',' ').replace('.', ' ').replace(',', ' ').replace('\'', ' ');
+		String[] words = message.split(" ");
+		String word = " ";
+		int chance = MPMTools.generator.nextInt(100)+1;
+		int wordCount = 1;
+		if (chance<20){
+			wordCount = 5;
+			chance=101;
+		}else if (chance<40){
+			wordCount = 4;
+			chance=101;
+		}else if (chance<60){
+			wordCount = 2;
+			chance= 101;
+		}else wordCount = 1;
+		
+		for (int i = 0; i <= wordCount; i++){
+			word = word + words[MPMTools.generator.nextInt(words.length)] + " ";
+		}
+		
+		return word;
+	}
 
+	public static Material getRandomMaterial(){
+		int type = MPMTools.generator.nextInt(7)+1;
+		int material = MPMTools.generator.nextInt(100)+1;
+		
+		if (type==1){
+			//sword
+			if (material<10){
+				return Material.DIAMOND_SWORD;
+			}else if(material<30){
+				return Material.GOLD_SWORD;
+			}else if (material < 60){
+				return Material.IRON_SWORD;
+			}else{
+				return Material.STONE_SWORD;
+			}
+		}else if(type==2){
+			//axe
+			if (material<10){
+				return Material.DIAMOND_AXE;
+			}else if(material<30){
+				return Material.GOLD_AXE;
+			}else if (material < 60){
+				return Material.IRON_AXE;
+			}else{
+				return Material.STONE_AXE;
+			}
+		}else if (type==3){
+			//hoe
+			if (material<10){
+				return Material.DIAMOND_HOE;
+			}else if(material<30){
+				return Material.GOLD_HOE;
+			}else if (material < 60){
+				return Material.IRON_HOE;
+			}else{
+				return Material.STONE_HOE;
+			}
+		}else if (type==4){
+			//helmet
+			if (material<10){
+				return Material.DIAMOND_HELMET;
+			}else if(material<30){
+				return Material.GOLD_HELMET;
+			}else if (material < 60){
+				return Material.IRON_HELMET;
+			}else{
+				return Material.LEATHER_HELMET;
+			}
+		}else if (type==5){
+			//chestplate
+			if (material<10){
+				return Material.DIAMOND_CHESTPLATE;
+			}else if(material<30){
+				return Material.GOLD_CHESTPLATE;
+			}else if (material < 60){
+				return Material.IRON_CHESTPLATE;
+			}else{
+				return Material.LEATHER_CHESTPLATE;
+			}
+		}else if (type==6){
+			//leggings
+			if (material<10){
+				return Material.DIAMOND_LEGGINGS;
+			}else if(material<30){
+				return Material.GOLD_LEGGINGS;
+			}else if (material < 60){
+				return Material.IRON_LEGGINGS;
+			}else{
+				return Material.LEATHER_LEGGINGS;
+			}
+		}else if (type==7){
+			//boots
+			if (material<10){
+				return Material.DIAMOND_BOOTS;
+			}else if(material<30){
+				return Material.GOLD_BOOTS;
+			}else if (material < 60){
+				return Material.IRON_BOOTS;
+			}else{
+				return Material.LEATHER_BOOTS;
+			}
+		}
+		return Material.WOOD_SWORD;
+	}
+	
 	public static ItemStack getTier1CastingWant(){
 		ItemStack item = new ItemStack(Material.BLAZE_ROD);
 		ItemMeta itemMeta = item.getItemMeta();
