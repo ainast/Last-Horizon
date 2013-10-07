@@ -142,7 +142,7 @@ public class MPMTools {
 	 
 	    // WorldGuard may not be loaded
 	    if (plugin2 == null || !(plugin2 instanceof WorldGuardPlugin)) {
-	        return null; // Maybe you want throw an exception instead
+	        return null;
 	    }
 	 
 	    return (WorldGuardPlugin) plugin2;
@@ -154,7 +154,7 @@ public class MPMTools {
 	 
 	    // Heroes may not be loaded
 	    if (plugin2 == null || !(plugin2 instanceof Heroes)) {
-	        return null; // Maybe you want throw an exception instead
+	        return null;
 	    }
 	 
 	    return (Heroes) plugin2;

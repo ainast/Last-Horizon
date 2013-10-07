@@ -15,8 +15,6 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public class TieredItems {
 	
-	
-	
 	public static ItemStack getRandomItem(int maxChance){
 		ItemStack item = new ItemStack(getRandomMaterial());
 		ItemMeta itemMeta = item.getItemMeta();
@@ -176,7 +174,7 @@ public class TieredItems {
 		return Material.WOOD_SWORD;
 	}
 	
-	public static ItemStack getTier1CastingWant(){
+	public static ItemStack getTier1CastingWand(){
 		ItemStack item = new ItemStack(Material.BLAZE_ROD);
 		ItemMeta itemMeta = item.getItemMeta();
 		List<String> lore = new ArrayList<String>();
