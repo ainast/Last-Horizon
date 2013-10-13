@@ -1,18 +1,43 @@
 package com.ainast.morepowerfulmobsreloaded;
 
+import me.egordm.simpleattributes.API.SimpleAttributesAPI;
+import me.egordm.simpleattributes.Attributes.AttributeType;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
+import org.shininet.bukkit.playerheads.Tools;
 
+import com.herocraftonline.heroes.characters.Monster;
 import com.sk89q.worldedit.MobType;
 
 public class MPMMobTypes {
 
 	public static void spawnCorruptedResident(Location location){
 		LivingEntity entity = (LivingEntity) location.getWorld().spawnCreature(location, EntityType.ZOMBIE);
+		entity.setCustomName("Corrupted Resident");
 		
+		//set entity equipment and drop chance, put to 0 and use droptable instead
+		//I use equipment to increase mob attribute modifiers, pick one.
+		entity.getEquipment().setHelmet( Tools.Skull("Steve"));
+		entity.getEquipment().setHelmetDropChance(0);
+		entity.getEquipment().setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
+		entity.getEquipment().setChestplateDropChance(0);
+		entity.getEquipment().setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
+		entity.getEquipment().setLeggingsDropChance(0);
+		entity.getEquipment().setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
+		entity.getEquipment().setBootsDropChance(0);
+		
+		//set mob max HP
+		entity.setMaxHealth(220);
+		entity.setHealth(220);
+
+		//heroes mob stuff, don't know if works;
+		Monster m = MPMTools.getHeroes().getCharacterManager().getMonster(entity);
+		m.setDamage(m.getDamage()*3);
+		m.setExperience(31);
 		
 	}
 	

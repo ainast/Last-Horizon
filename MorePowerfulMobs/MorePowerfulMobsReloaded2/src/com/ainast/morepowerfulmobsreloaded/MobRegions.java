@@ -24,44 +24,34 @@ public class MobRegions {
 		
 		//this listens for spawns of type zombie.
 		if (entity.getType().equals(EntityType.ZOMBIE)){
-			Monster m = MPMTools.getHeroes().getCharacterManager().getMonster(entity);
+			MPMMobTypes.spawnCorruptedGuard(entity.getLocation());
+			/* 
+	Monster m = MPMTools.getHeroes().getCharacterManager().getMonster(entity);
 			m.setDamage(m.getDamage()*3);
-			
 			m.setExperience(1000);
-			
 			entity.setCustomName("Frank");
 			entity.setCustomNameVisible(true);
-			
-			
 			ItemStack rose = new ItemStack(Material.DIAMOND_SWORD);
-            
 			ItemMeta itemMeta = rose.getItemMeta();
-            itemMeta.setDisplayName("Flash, Aha!");
-            
-    		List<String> theList = new ArrayList<String>();
+			itemMeta.setDisplayName("Flash, Aha!");
+			List<String> theList = new ArrayList<String>();
 			theList.add("Mana Regeneration:50");
 			theList.add("Health Regeneration:-50");
 			itemMeta.setLore(theList);
-            
-            rose.setItemMeta(itemMeta);
-           
-            entity.addPotionEffect(PotionEffectType.INVISIBILITY.createEffect(999999,0),true);
-            
-            rose = SimpleAttributesAPI.addItemAttribute(rose, "Flash, AHAAH" ,  AttributeType.GENERIC_ATTACK_DAMAGE, 100);
-            rose = SimpleAttributesAPI.addItemAttribute(rose, "Flash, AHAAH", AttributeType.GENERIC_MOVEMENT_SPEED, .2);	
-           
-            entity.getEquipment().setItemInHand(rose);
-            entity.getEquipment().setItemInHandDropChance(100); 
-
-            ItemStack helmet = Tools.Skull("GoldenNitro");
-            ItemStack chest = new ItemStack(Material.IRON_CHESTPLATE);
-            
-            chest = SimpleAttributesAPI.addItemAttribute(chest, "Fucker", AttributeType.GENERIC_MAX_HEALTH, 100);
-            
-            entity.getEquipment().setChestplate(chest);
-            entity.getEquipment().setChestplateDropChance(100);
-            entity.getEquipment().setHelmet(helmet);
-            entity.getEquipment().setHelmetDropChance(100);
+			rose.setItemMeta(itemMeta);
+			entity.addPotionEffect(PotionEffectType.INVISIBILITY.createEffect(999999,0),true);
+			rose = SimpleAttributesAPI.addItemAttribute(rose, "Flash, AHAAH" ,  AttributeType.GENERIC_ATTACK_DAMAGE, 100);
+			rose = SimpleAttributesAPI.addItemAttribute(rose, "Flash, AHAAH", AttributeType.GENERIC_MOVEMENT_SPEED, .2);
+			entity.getEquipment().setItemInHand(rose);
+			entity.getEquipment().setItemInHandDropChance(100);
+			ItemStack helmet = Tools.Skull("GoldenNitro");
+			ItemStack chest = new ItemStack(Material.IRON_CHESTPLATE);
+			chest = SimpleAttributesAPI.addItemAttribute(chest, "Fucker", AttributeType.GENERIC_MAX_HEALTH, 100);
+			entity.getEquipment().setChestplate(chest);
+			entity.getEquipment().setChestplateDropChance(100);
+			entity.getEquipment().setHelmet(helmet);
+			entity.getEquipment().setHelmetDropChance(100);
+*/
 		}
 	}
 }
