@@ -442,7 +442,7 @@ public class TieredItems {
 		List<String> lore = new ArrayList<String>();
 		int percent = 0;
 		percent = MPMTools.generator.nextInt(8-2)+2;
-		int resistanceType = MPMTools.generator.nextInt(4)+1;
+		int resistanceType = MPMTools.generator.nextInt(7)+1;
 		if (resistanceType==1){
 			lore.add(MPMAttributeType.RESISTANCE_TO_EARTH+": " + percent + "%");
 		}else if(resistanceType==2){
@@ -452,7 +452,11 @@ public class TieredItems {
 		}else if (resistanceType==4){
 			lore.add(MPMAttributeType.RESISTANCE_TO_FORCE+": " + percent + "%");
 		}else if (resistanceType==5){
-			lore.add("RESISTANCE TO BUTTFUCKING: " + percent + "%");
+			lore.add(MPMAttributeType.RESISTANCE_TO_ICE+": " + percent + "%");
+		}else if (resistanceType==6){
+			lore.add(MPMAttributeType.RESISTANCE_TO_LIGHTNING+": " + percent + "%");
+		}else if (resistanceType==7){
+			lore.add(MPMAttributeType.RESISTANCE_TO_DARK+": " + percent + "%");
 		}
 		
 		percent = MPMTools.generator.nextInt(17-1)+1;
