@@ -50,7 +50,10 @@ public class MobEvents implements Listener {
 			if (regions.size()>0){
 				LivingEntity entity = event.getEntity();
 				if (regions.getFirst().equals("region1")){
-					if (rnd<=100) MobRegions.region1(entity);
+					if (rnd<=100){
+						MobRegions.region1(entity);
+						event.setCancelled(true);
+					}
 				}
 			}
 	}
