@@ -243,6 +243,11 @@ public class TieredItems {
 		item = SimpleAttributesAPI.addItemAttribute(item, "[TX] Blood Sword" ,  AttributeType.GENERIC_ATTACK_DAMAGE, 45/100);
 		return item;
 	}
+		
+	//TIER 1 PLATE (Diamond Armor Set)
+	//TIER 1 PLATE (Diamond Armor Set)
+	
+	//TIER 1 PLATEMAIL
 	
 	public static ItemStack getTier1PristinePlateMail(){
 		ItemStack item = new ItemStack(Material.DIAMOND_CHESTPLATE);
@@ -332,6 +337,117 @@ public class TieredItems {
 
 		percent = -2;
 		item = SimpleAttributesAPI.addItemAttribute(item, "Dented Plate Mail" ,  AttributeType.GENERIC_MOVEMENT_SPEED, -0.01);
+		
+		return item;
+	}
+	
+	//TIER 1 PLATE LEGGINGS
+	
+	public static ItemStack getTier1PristinePlateLeggings(){
+		ItemStack item = new ItemStack(Material.DIAMOND_LEGGINGS);
+		ItemMeta itemMeta = item.getItemMeta();
+		List<String> lore = new ArrayList<String>();
+		int percent = 0;
+		percent = MPMTools.generator.nextInt(4-1)+1;
+		lore.add(MPMAttributeType.DEATH_DEFYING);
+		lore.add(MPMAttributeType.RESISTANCE_TO_PHYSICAL+": " + percent + "%");
+		percent = MPMTools.generator.nextInt(32-8)+8;
+		lore.add(MPMAttributeType.MAXIMUM_HEALTH + ":" + percent);
+		lore.add(MPMAttributeType.MANA_REGENERATION + ":" + -3);
+		percent = MPMTools.generator.nextInt(5-1)+1;
+		itemMeta.setLore(lore);
+		itemMeta.setDisplayName(ChatColor.GOLD + "[T1] Pristine Plate Leggings");
+		item.setItemMeta(itemMeta);
+		item = SimpleAttributesAPI.addItemAttribute(item, "[T1] Pristine Plate Leggings" ,  AttributeType.GENERIC_KNOCKBACK_RESISTANCE, percent/100.0);
+		
+		return item;
+	}
+	
+	public static ItemStack getTier1PlateLeggings(){
+		ItemStack item = new ItemStack(Material.DIAMOND_LEGGINGS);
+		ItemMeta itemMeta = item.getItemMeta();
+		List<String> lore = new ArrayList<String>();
+		int percent = 0;
+		percent = MPMTools.generator.nextInt(4-1)+1;
+		lore.add(MPMAttributeType.RESISTANCE_TO_PHYSICAL+": " + percent + "%");
+		percent = MPMTools.generator.nextInt(27-3)+3;
+		lore.add(MPMAttributeType.MAXIMUM_HEALTH + ":" + percent);
+		lore.add(MPMAttributeType.MANA_REGENERATION + ":" + -3);
+		percent = MPMTools.generator.nextInt(4-1)+1;
+		itemMeta.setLore(lore);
+		itemMeta.setDisplayName(ChatColor.BLUE + "[T1] Plate Leggings");
+		item.setItemMeta(itemMeta);
+		item = SimpleAttributesAPI.addItemAttribute(item, "[T1] Plate Leggings" ,  AttributeType.GENERIC_KNOCKBACK_RESISTANCE, percent/100.0);
+		
+		return item;
+	}
+	
+	public static ItemStack getTier1DentedPlateLeggings(){
+		ItemStack item = new ItemStack(Material.DIAMOND_LEGGINGS);
+		ItemMeta itemMeta = item.getItemMeta();
+		List<String> lore = new ArrayList<String>();
+		int percent = 0;
+		percent = MPMTools.generator.nextInt(4-1)+1;
+		lore.add(MPMAttributeType.RESISTANCE_TO_PHYSICAL+": " + percent + "%");
+		percent = MPMTools.generator.nextInt(22-1)+1;
+		lore.add(MPMAttributeType.MAXIMUM_HEALTH + ":" + percent);
+		lore.add(MPMAttributeType.MANA_REGENERATION + ":" + -3);
+		percent = MPMTools.generator.nextInt(3-1)+1;
+		itemMeta.setLore(lore);
+		itemMeta.setDisplayName(ChatColor.GREEN + "[T1] Dented Plate Leggings");
+		item.setItemMeta(itemMeta);
+		item = SimpleAttributesAPI.addItemAttribute(item, "[T1] Dented Plate Leggings" ,  AttributeType.GENERIC_KNOCKBACK_RESISTANCE, percent/100.0);
+		
+		return item;
+	}
+	
+	//TIER 1 PLATE LEGGINGS
+	
+	public static ItemStack getTier1PristinePlateGreaves(){
+		ItemStack item = new ItemStack(Material.DIAMOND_BOOTS);
+		ItemMeta itemMeta = item.getItemMeta();
+		List<String> lore = new ArrayList<String>();
+		int percent = 0;
+		percent = MPMTools.generator.nextInt(13-7)+7;
+		lore.add(MPMAttributeType.DEATH_DEFYING);
+		lore.add(MPMAttributeType.RESISTANCE_TO_EARTH+": " + percent + "%");
+		percent = MPMTools.generator.nextInt(27-3)+3;
+		lore.add(MPMAttributeType.MAXIMUM_HEALTH + ":" + percent);
+		itemMeta.setLore(lore);
+		itemMeta.setDisplayName(ChatColor.GOLD + "[T1] Pristine Plate Greaves");
+		item.setItemMeta(itemMeta);
+		
+		return item;
+	}
+	
+	public static ItemStack getTier1PlateGreaves(){
+		ItemStack item = new ItemStack(Material.DIAMOND_BOOTS);
+		ItemMeta itemMeta = item.getItemMeta();
+		List<String> lore = new ArrayList<String>();
+		int percent = 0;
+		percent = MPMTools.generator.nextInt(11-5)+5;
+		lore.add(MPMAttributeType.RESISTANCE_TO_EARTH+": " + percent + "%");
+		percent = MPMTools.generator.nextInt(22-1)+1;
+		lore.add(MPMAttributeType.MAXIMUM_HEALTH + ":" + percent);
+		itemMeta.setLore(lore);
+		itemMeta.setDisplayName(ChatColor.BLUE + "[T1] Plate Greaves");
+		item.setItemMeta(itemMeta);
+		
+		return item;
+	}
+	
+	public static ItemStack getTier1DentedPlateGreaves(){
+		ItemStack item = new ItemStack(Material.DIAMOND_BOOTS);
+		ItemMeta itemMeta = item.getItemMeta();
+		List<String> lore = new ArrayList<String>();
+		int percent = 0;
+		percent = MPMTools.generator.nextInt(8-2)+2;
+		lore.add(MPMAttributeType.RESISTANCE_TO_EARTH+": " + percent + "%");
+		percent = MPMTools.generator.nextInt(17-1)+1;
+		lore.add(MPMAttributeType.MAXIMUM_HEALTH + ":" + percent);
+		itemMeta.setLore(lore);
+		itemMeta.setDisplayName(ChatColor.GREEN + "[T1] Dented Plate Greaves");
+		item.setItemMeta(itemMeta);
 		
 		return item;
 	}
