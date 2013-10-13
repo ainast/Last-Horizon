@@ -3,6 +3,7 @@ package com.ainast.morepowerfulmobsreloaded;
 import java.util.LinkedList;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
@@ -10,6 +11,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.inventory.ItemStack;
 
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.managers.RegionManager;
@@ -41,7 +44,7 @@ public class MobEvents implements Listener {
 		for ( String name : parentNames ){
 			regions.remove( name );
 		}
-
+ 
 		int rnd = MPMTools.generator.nextInt(100)+1;
 			
 			if (regions.size()>0){
@@ -52,4 +55,17 @@ public class MobEvents implements Listener {
 			}
 	}
 	
+	public void onCustomMobDeathEvent(EntityDeathEvent event){
+		EntityType entityType = event.getEntityType();
+	
+		if (entityType==EntityType.ZOMBIE || entityType==EntityType.SKELETON){
+			String name = event.getEntity().getCustomName();
+			
+			if (name.equals("Corrupted Guard")){
+				event.getDrops().clear();
+				Location location = event.getEntity().getLocation();
+				event.getEntity().getLocation().getWorld().dropItem(location, MPMMobTypes.getCorruptedGuardDrop());				
+			}
+		}
+	}
 }

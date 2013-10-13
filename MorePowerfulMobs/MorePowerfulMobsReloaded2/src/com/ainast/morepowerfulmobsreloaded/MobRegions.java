@@ -19,9 +19,10 @@ import com.herocraftonline.heroes.characters.Monster;
 
 public class MobRegions {
 	
-
+	//this is your region, then call it from in MobEvents
 	public static void region1(LivingEntity entity){
 		
+		//this listens for spawns of type zombie.
 		if (entity.getType().equals(EntityType.ZOMBIE)){
 			Monster m = MPMTools.getHeroes().getCharacterManager().getMonster(entity);
 			m.setDamage(m.getDamage()*3);
