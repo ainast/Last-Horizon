@@ -401,7 +401,7 @@ public class TieredItems {
 		return item;
 	}
 	
-	//TIER 1 PLATE LEGGINGS
+	//TIER 1 PLATE GREAVES
 	
 	public static ItemStack getTier1PristinePlateGreaves(){
 		ItemStack item = new ItemStack(Material.DIAMOND_BOOTS);
