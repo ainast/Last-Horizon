@@ -6,6 +6,7 @@ import java.util.List;
 import me.egordm.simpleattributes.API.SimpleAttributesAPI;
 import me.egordm.simpleattributes.Attributes.AttributeType;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -17,6 +18,7 @@ import org.shininet.bukkit.playerheads.Tools;
 import com.herocraftonline.heroes.characters.Monster;
 
 public class MobRegions {
+	
 
 	public static void region1(LivingEntity entity){
 		
