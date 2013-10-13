@@ -13,5 +13,12 @@
 	<classpathentry kind="lib" path="/Users/jaredtorrez/Desktop/Bukkit/plugins/SimpleAttributes.jar"/>
 	<classpathentry kind="lib" path="/Users/jaredtorrez/Desktop/Bukkit/plugins/WorldEdit.jar"/>
 	<classpathentry kind="lib" path="/Users/jaredtorrez/Desktop/Bukkit/plugins/WorldGuard.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Awesome/Desktop/TEST SERVER/All of LH/PlayerHeads.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Awesome/Desktop/TEST SERVER/All of LH/worldedit-5.5.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Awesome/Desktop/TEST SERVER/All of LH/worldguard-5.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Awesome/Desktop/SimpleAttributes.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Awesome/Desktop/bukkit-1.6.2-R1.1-20130911.072029-2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Awesome/Desktop/CODING/Heroes.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Awesome/Desktop/CODING/spigot.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

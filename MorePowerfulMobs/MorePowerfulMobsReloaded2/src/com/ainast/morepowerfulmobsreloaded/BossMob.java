@@ -27,7 +27,7 @@ import org.bukkit.potion.PotionType;
 import com.sk89q.worldedit.blocks.BlockType;
 
 public class BossMob implements Runnable, Listener{
-	
+	// lol!!
 	LivingEntity boss;
 	EntityType type = EntityType.ZOMBIE;
 	String name = "Testificate";
