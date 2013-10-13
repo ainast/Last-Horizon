@@ -410,7 +410,22 @@ public class TieredItems {
 		int percent = 0;
 		percent = MPMTools.generator.nextInt(13-7)+7;
 		lore.add(MPMAttributeType.DEATH_DEFYING);
-		lore.add(MPMAttributeType.RESISTANCE_TO_EARTH+": " + percent + "%");
+		int resistanceType = MPMTools.generator.nextInt(7)+1;
+		if (resistanceType==1){
+			lore.add(MPMAttributeType.RESISTANCE_TO_EARTH+": " + percent + "%");
+		}else if(resistanceType==2){
+			lore.add(MPMAttributeType.RESISTANCE_TO_FIRE+": " + percent + "%");
+		}else if(resistanceType==3){
+			lore.add(MPMAttributeType.RESISTANCE_TO_LIGHT+": " + percent + "%");
+		}else if (resistanceType==4){
+			lore.add(MPMAttributeType.RESISTANCE_TO_FORCE+": " + percent + "%");
+		}else if (resistanceType==5){
+			lore.add(MPMAttributeType.RESISTANCE_TO_ICE+": " + percent + "%");
+		}else if (resistanceType==6){
+			lore.add(MPMAttributeType.RESISTANCE_TO_LIGHTNING+": " + percent + "%");
+		}else if (resistanceType==7){
+			lore.add(MPMAttributeType.RESISTANCE_TO_DARK+": " + percent + "%");
+		}
 		percent = MPMTools.generator.nextInt(27-3)+3;
 		lore.add(MPMAttributeType.MAXIMUM_HEALTH + ":" + percent);
 		itemMeta.setLore(lore);
@@ -426,7 +441,22 @@ public class TieredItems {
 		List<String> lore = new ArrayList<String>();
 		int percent = 0;
 		percent = MPMTools.generator.nextInt(11-5)+5;
-		lore.add(MPMAttributeType.RESISTANCE_TO_EARTH+": " + percent + "%");
+		int resistanceType = MPMTools.generator.nextInt(7)+1;
+		if (resistanceType==1){
+			lore.add(MPMAttributeType.RESISTANCE_TO_EARTH+": " + percent + "%");
+		}else if(resistanceType==2){
+			lore.add(MPMAttributeType.RESISTANCE_TO_FIRE+": " + percent + "%");
+		}else if(resistanceType==3){
+			lore.add(MPMAttributeType.RESISTANCE_TO_LIGHT+": " + percent + "%");
+		}else if (resistanceType==4){
+			lore.add(MPMAttributeType.RESISTANCE_TO_FORCE+": " + percent + "%");
+		}else if (resistanceType==5){
+			lore.add(MPMAttributeType.RESISTANCE_TO_ICE+": " + percent + "%");
+		}else if (resistanceType==6){
+			lore.add(MPMAttributeType.RESISTANCE_TO_LIGHTNING+": " + percent + "%");
+		}else if (resistanceType==7){
+			lore.add(MPMAttributeType.RESISTANCE_TO_DARK+": " + percent + "%");
+		}
 		percent = MPMTools.generator.nextInt(22-1)+1;
 		lore.add(MPMAttributeType.MAXIMUM_HEALTH + ":" + percent);
 		itemMeta.setLore(lore);
