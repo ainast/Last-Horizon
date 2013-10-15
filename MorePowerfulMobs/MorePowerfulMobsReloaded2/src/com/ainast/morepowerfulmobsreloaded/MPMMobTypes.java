@@ -15,10 +15,11 @@ import com.sk89q.worldedit.MobType;
 
 public class MPMMobTypes {
 
-	public static void spawnCorruptedResident(Location location){
-		LivingEntity entity = (LivingEntity) location.getWorld().spawnCreature(location, EntityType.ZOMBIE);
-		entity.setCustomName("Corrupted Resident");
+	public static void spawnCorruptedResident(LivingEntity entity){
+		System.out.println("Spawn Corrupted Resident");
 		
+		entity.setCustomName("Corrupted Resident");
+		entity.setCustomNameVisible(true);
 		//set entity equipment and drop chance, put to 0 and use droptable instead
 		//I use equipment to increase mob attribute modifiers, pick one.
 		entity.getEquipment().setHelmet( Tools.Skull("Steve"));
@@ -38,7 +39,6 @@ public class MPMMobTypes {
 		Monster m = MPMTools.getHeroes().getCharacterManager().getMonster(entity);
 		m.setDamage(m.getDamage()*3);
 		m.setExperience(31);
-		
 	}
 	
 	public static void spawnCorruptedGuard(Location location){

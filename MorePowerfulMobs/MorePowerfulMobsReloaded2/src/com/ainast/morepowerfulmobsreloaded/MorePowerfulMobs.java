@@ -28,7 +28,7 @@ public class MorePowerfulMobs extends JavaPlugin{
 		//IF THE MOBS ERROR OUT, MULTIVERSE MUST BE LOADED BEFORE THIS RUNS. 
 		//IF THE WORLD WASN'T GENERATED THEN IT CAN RETURN NULL FOR THE WORLD.
 
-		//spawnUncleFrank();
+		spawnUncleFrank();
 		//spawnMadScientistAbel();
 				
 		getServer().getPluginManager().registerEvents(new MobEvents(), this);
@@ -84,7 +84,7 @@ public class MorePowerfulMobs extends JavaPlugin{
 	private void spawnUncleFrank() {
 		World r1World = getServer().getWorld("world");
 		Location loc = new Location(r1World, 90, 130, -68);
-		ItemStack[] drops = { TieredItems.getTier1DentedPlateMail() };
+		ItemStack[] drops = { TieredItems.getTier1DentedPlateGreaves(), TieredItems.getTier1DentedPlateGreaves(), TieredItems.getTier1DentedPlateGreaves(), TieredItems.getTier1DentedPlateGreaves(), TieredItems.getTier1DentedPlateGreaves(), TieredItems.getTier1DentedPlateGreaves(), TieredItems.getTier1DentedPlateGreaves(), TieredItems.getTier1DentedPlateGreaves(), TieredItems.getTier1DentedPlateGreaves(), TieredItems.getTier1DentedPlateGreaves() };
 		//gbm = new GenericBossMob("Evil Frank", loc, EntityType.ZOMBIE, TieredItems.getTier1DentedPlateMail(), null, drops, 100, 10000);
 		//gbm.setMaxHealth(10000);
 		gbm = new BossMob();
