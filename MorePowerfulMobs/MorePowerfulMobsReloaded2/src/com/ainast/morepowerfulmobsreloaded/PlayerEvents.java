@@ -17,6 +17,9 @@ import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Sequence;
 
+import me.egordm.simpleattributes.API.SimpleAttributesAPI;
+import me.egordm.simpleattributes.Attributes.AttributeType;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -24,6 +27,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -31,6 +35,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -316,6 +321,16 @@ public class PlayerEvents implements Listener{
 				player.getInventory().addItem(TieredItems.getRandomItem(100));
 				player.updateInventory();
 			}
+		}
+	}
+	
+	@EventHandler
+	public void onCraftItemEvent(CraftItemEvent event){
+		ItemStack item = event.getCurrentItem();
+		
+		if (item.getType()==Material.DIAMOND_SWORD){
+			item = SimpleAttributesAPI.addItemAttribute(item, "Diamond Sword" ,  AttributeType.GENERIC_ATTACK_DAMAGE, 45);
+			event.setCurrentItem(item);
 		}
 	}
 }

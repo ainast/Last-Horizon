@@ -200,9 +200,7 @@ public class BossMob implements Runnable, Listener{
 	}
 	
 	public void dropBossItems(Location location){
-		for (ItemStack item : getDrops()){
-			Bukkit.getWorld(location.getWorld().getName()).dropItem(location, item);
-		}
+		Bukkit.getWorld(location.getWorld().getName()).dropItem(location, drops[MPMTools.generator.nextInt(drops.length)]);
 	}
 	
 	public void sendMassDeathMessage(Entity entity){

@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.permissions.BroadcastPermissions;
 import org.shininet.bukkit.playerheads.Tools;
 
 import com.herocraftonline.heroes.characters.Monster;
@@ -39,6 +40,8 @@ public class MPMMobTypes {
 		Monster m = MPMTools.getHeroes().getCharacterManager().getMonster(entity);
 		m.setDamage(m.getDamage()*3);
 		m.setExperience(31);
+		
+		
 	}
 	
 	public static void spawnCorruptedGuard(Location location){
@@ -47,8 +50,7 @@ public class MPMMobTypes {
 	
 	public static ItemStack getCorruptedGuardDrop() {
 		ItemStack[] dropTable = { //add items seperated by comma
-								new ItemStack(Material.ANVIL),
-								TieredItems.getTier1PlateMail()
+								TieredItems.getTier1PristinePlateGreaves()
 								};
 		int i = MPMTools.generator.nextInt(dropTable.length);
 		ItemStack dropItem =  dropTable[i]; 

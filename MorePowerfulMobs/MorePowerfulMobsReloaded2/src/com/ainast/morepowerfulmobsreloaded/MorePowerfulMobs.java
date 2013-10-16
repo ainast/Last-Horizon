@@ -2,12 +2,16 @@ package com.ainast.morepowerfulmobsreloaded;
 
 import java.util.logging.Logger;
 
+import me.egordm.simpleattributes.API.SimpleAttributesAPI;
+import me.egordm.simpleattributes.Attributes.AttributeType;
+
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -35,7 +39,6 @@ public class MorePowerfulMobs extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
 	
 		getServer().getScheduler().runTaskTimer(this, new PerTickBuffs(), 20, 20);
-
 	}
 
 	private void spawnMadScientistAbel() {
