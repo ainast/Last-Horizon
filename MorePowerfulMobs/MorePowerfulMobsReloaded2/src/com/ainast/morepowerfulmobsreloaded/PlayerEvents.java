@@ -53,6 +53,7 @@ import com.herocraftonline.heroes.api.events.HeroKillCharacterEvent;
 import com.herocraftonline.heroes.api.events.HeroRegainHealthEvent;
 import com.herocraftonline.heroes.api.events.HeroRegainManaEvent;
 import com.herocraftonline.heroes.api.events.SkillDamageEvent;
+import com.herocraftonline.heroes.api.events.SkillUseEvent;
 import com.herocraftonline.heroes.characters.Hero;
 import com.herocraftonline.heroes.characters.skill.SkillType;
 
@@ -320,6 +321,8 @@ public class PlayerEvents implements Listener{
 			}else if(MPMTools.playerAttributes.get(player).containsKey(MPMAttributeType.GIVE_RANDOM_ITEM)){
 				player.getInventory().addItem(TieredItems.getRandomItem(100));
 				player.updateInventory();
+			}else if (MPMTools.playerAttributes.get(player).containsKey(MPMAttributeType.TEST_SKILL)){
+				Hero h = MPMTools.getHeroes().getCharacterManager().getHero(player);
 			}
 		}
 	}

@@ -58,5 +58,6 @@ public class MPMAttributeType {
 	final static String HEAL_BONUS = "HEAL Bonus";
 	
 	final static String GIVE_RANDOM_ITEM = "RANDOMIZER";
+	public static String TEST_SKILL = "Test Skill";
 	
 }
