@@ -2,6 +2,10 @@ package com.ainast.morepowerfulmobsreloaded;
 
 import java.util.LinkedList;
 
+import me.sablednah.MobHealth.MobHealth;
+import me.sablednah.MobHealth.API.MobHealthAPI;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -11,6 +15,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.entity.EntityDeathEvent;
+
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
@@ -65,7 +70,12 @@ public class MobEvents implements Listener {
 	
 		if (entityType==EntityType.ZOMBIE || entityType==EntityType.SKELETON){
 			//System.out.println("Mob is Zombie");
-			String name = event.getEntity().getCustomName();
+			
+			MobHealth pMobHealth = (MobHealth) Bukkit.getServer().getPluginManager().getPlugin("MobHealth");
+			MobHealthAPI mobHealthAPI = pMobHealth.getAPI(pMobHealth);
+			
+			String name = mobHealthAPI.getMobName(event.getEntity());
+			
 			
 			if (name.contains("Corrupted Resident")){
 				//System.out.println("Mob is corrupted Resident");

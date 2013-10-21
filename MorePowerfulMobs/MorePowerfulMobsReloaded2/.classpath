@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="/Users/jaredtorrez/Desktop/Bukkit/plugins/SimpleAttributes.jar"/>
 	<classpathentry kind="lib" path="/Users/jaredtorrez/Desktop/Bukkit/plugins/WorldEdit.jar"/>
 	<classpathentry kind="lib" path="/Users/jaredtorrez/Desktop/Bukkit/plugins/WorldGuard.jar"/>
+	<classpathentry kind="lib" path="/Users/jaredtorrez/Downloads/MobHealth.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
