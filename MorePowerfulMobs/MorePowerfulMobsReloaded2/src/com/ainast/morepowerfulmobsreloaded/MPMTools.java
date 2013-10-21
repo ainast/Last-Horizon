@@ -89,6 +89,7 @@ public class MPMTools {
 		
 		possibleAttributes.add(MPMAttributeType.DRAGON_GROWL);
 		possibleAttributes.add(MPMAttributeType.CAT_PURR);
+		possibleAttributes.add(MPMAttributeType.FLOWER_CHILD);
 		
 		possibleAttributes.add(MPMAttributeType.HEAL_BONUS);
 		
