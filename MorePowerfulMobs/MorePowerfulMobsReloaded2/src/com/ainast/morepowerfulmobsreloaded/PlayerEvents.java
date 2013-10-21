@@ -21,9 +21,11 @@ import me.egordm.simpleattributes.API.SimpleAttributesAPI;
 import me.egordm.simpleattributes.Attributes.AttributeType;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -35,18 +37,21 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import com.herocraftonline.heroes.api.events.CharacterDamageEvent;
 import com.herocraftonline.heroes.api.events.ExperienceChangeEvent;
 import com.herocraftonline.heroes.api.events.HeroEnterCombatEvent;
 import com.herocraftonline.heroes.api.events.HeroKillCharacterEvent;
@@ -54,6 +59,7 @@ import com.herocraftonline.heroes.api.events.HeroRegainHealthEvent;
 import com.herocraftonline.heroes.api.events.HeroRegainManaEvent;
 import com.herocraftonline.heroes.api.events.SkillDamageEvent;
 import com.herocraftonline.heroes.api.events.SkillUseEvent;
+import com.herocraftonline.heroes.api.events.WeaponDamageEvent;
 import com.herocraftonline.heroes.characters.Hero;
 import com.herocraftonline.heroes.characters.skill.SkillType;
 
@@ -72,9 +78,121 @@ public class PlayerEvents implements Listener{
 		if (MPMTools.playerAttributes.containsKey(player)) MPMTools.playerAttributes.get(player).clear();
 	}
 	
+	@EventHandler
+	public void onPlayerMoveEvent(PlayerMoveEvent event){
+		Player player = event.getPlayer();
+		if (MPMTools.playerAttributes.containsKey(player)){
+			HashMap<String, Long> attributes = MPMTools.playerAttributes.get(player);
+			if (attributes.containsKey(MPMAttributeType.FLOWER_CHILD)){
+				int chance = MPMTools.generator.nextInt(100)+1;
+				if (chance<=20){
+					  Location location = event.getPlayer().getLocation().clone();
+					  location.add(0, -1, 0);
+					  if (location.getBlock().equals(Material.GRASS)){
+						  location.add(0,1,0);
+						  location.getBlock().setType(Material.RED_ROSE);
+					  }
+				}
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onLaunchArrowEvent(ProjectileLaunchEvent event) {
+		  System.out.println("ProjectileLaunchEvent");
+	        if(event.getEntity() instanceof Arrow) {
+	            if(event.getEntity().getShooter() instanceof Player) {
+	            	HashMap<String, Long> attributes = MPMTools.playerAttributes.get(event.getEntity().getShooter());
+	            	if (attributes.containsKey(MPMAttributeType.ARROW_VELOCITY_MULTIPLIER)){
+	            		Long value = attributes.get(MPMAttributeType.ARROW_VELOCITY_MULTIPLIER);
+	            		event.getEntity().setVelocity(event.getEntity().getVelocity().clone().multiply(value));
+	            	}
+	            }
+	        }
+	    }
+	
+	@EventHandler
+	public void onWeaponDamageEvent(WeaponDamageEvent event){
+		System.out.println("WeaponDamageEvent");
+		if (!(event.getEntity() instanceof Player)) return;
+		Player player = (Player) event.getAttackerEntity();
+		HashMap<String, Long> attributes = MPMTools.playerAttributes.get(player);
+		
+		if (attributes.containsKey(MPMAttributeType.POISONOUS)){
+			long value = attributes.get(MPMAttributeType.POISONOUS);
+			int chance = MPMTools.generator.nextInt(100)+1;
+			
+			if (chance<=value && event.getEntity() instanceof Player){
+				Player p = (Player) event.getEntity();
+				Hero h = MPMTools.getHeroes().getCharacterManager().getHero(p);
+				p.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 60, 3, true));
+			}
+		}
+		
+		if (attributes.containsKey(MPMAttributeType.BLINDING)){
+			long value = attributes.get(MPMAttributeType.BLINDING);
+			int chance = MPMTools.generator.nextInt(100)+1;
+			
+			if (chance<=value && event.getEntity() instanceof Player){
+				Player p = (Player) event.getEntity();
+				Hero h = MPMTools.getHeroes().getCharacterManager().getHero(p);
+				p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 60, 3, true));
+			}
+		}
+		
+		
+		if (attributes.containsKey(MPMAttributeType.CONFUSING)){
+			long value = attributes.get(MPMAttributeType.CONFUSING);
+			int chance = MPMTools.generator.nextInt(100)+1;
+			
+			if (chance<=value && event.getEntity() instanceof Player){
+				Player p = (Player) event.getEntity();
+				Hero h = MPMTools.getHeroes().getCharacterManager().getHero(p);
+				System.out.println("Confusing");
+				p.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 60, 3, true));
+			}
+		}
+		
+		if (attributes.containsKey(MPMAttributeType.WITHERING)){
+			long value = attributes.get(MPMAttributeType.WITHERING);
+			int chance = MPMTools.generator.nextInt(100)+1;
+			
+			if (chance<=value && event.getEntity() instanceof Player){
+				Player p = (Player) event.getEntity();
+				Hero h = MPMTools.getHeroes().getCharacterManager().getHero(p);
+				System.out.println("Withering");
+				p.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 60, 3, true));
+			}
+		}
+		
+		if (attributes.containsKey(MPMAttributeType.WEAKINING)){
+			long value = attributes.get(MPMAttributeType.WEAKINING);
+			int chance = MPMTools.generator.nextInt(100)+1;
+			
+			if (chance<=value && event.getEntity() instanceof Player){
+				Player p = (Player) event.getEntity();
+				Hero h = MPMTools.getHeroes().getCharacterManager().getHero(p);
+				System.out.println("Weakening");
+				p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 60, 3, true));
+			}
+		}
+		
+		if (attributes.containsKey(MPMAttributeType.SLOWING)){
+			long value = attributes.get(MPMAttributeType.SLOWING);
+			int chance = MPMTools.generator.nextInt(100)+1;
+			
+			if (chance<=value && event.getEntity() instanceof Player){
+				Player p = (Player) event.getEntity();
+				Hero h = MPMTools.getHeroes().getCharacterManager().getHero(p);
+				System.out.println("Slowing");
+				p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 60, 3, true));
+			}
+		}
+		
+	}
 	 
 	@EventHandler
-	public void onCharacterDamageEvent(SkillDamageEvent event){
+	public void onSkillDamageEvent(SkillDamageEvent event){
 		
 		if (!(event.getEntity() instanceof Player)) return;
 		
@@ -251,15 +369,12 @@ public class PlayerEvents implements Listener{
 							dropsToRemove.add(item);
 							item.setDurability((short) (item.getDurability() + ItemTools.durabilityModifier(item.getType())));
 							dropsToAdd.add(item);
-							
-							
 						}else if(item.getItemMeta().getLore().contains(MPMAttributeType.DEVILS_TAKE)){
 							dropsToRemove.add(item);
 						}
 					}
 					MPMTools.playerAttributes.get(player).clear();
 				}
-				
 			}
 		
 			this.itemsToReadd.put(player, dropsToAdd);			

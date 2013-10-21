@@ -82,6 +82,10 @@ public class MPMTools {
 		
 		possibleAttributes.add(MPMAttributeType.POISONOUS);
 		possibleAttributes.add(MPMAttributeType.BLINDING);
+		possibleAttributes.add(MPMAttributeType.CONFUSING);
+		possibleAttributes.add(MPMAttributeType.WITHERING);
+		possibleAttributes.add(MPMAttributeType.SLOWING);
+		possibleAttributes.add(MPMAttributeType.WEAKINING);
 		
 		possibleAttributes.add(MPMAttributeType.DRAGON_GROWL);
 		possibleAttributes.add(MPMAttributeType.CAT_PURR);

@@ -4,20 +4,24 @@ import org.bukkit.ChatColor;
 
 public class MPMAttributeType {
 	
-	final static String RESISTANCE_TO_DARK = "Resistance to DARK";  //percent
-	final static String RESISTANCE_TO_EARTH = "Resistance to EARTH"; //percent
-	final static String RESISTANCE_TO_FIRE = "Resistance to FIRE"; //percent
-	final static String RESISTANCE_TO_FORCE = "Resistance to FORCE"; //percent
-	final static String RESISTANCE_TO_ICE = "Resistance to ICE"; //percent
-	final static String RESISTANCE_TO_LIGHT = "Resistance to LIGHT"; //percent
-	final static String RESISTANCE_TO_LIGHTNING = "Resistance to LIGHTNING"; //percent
-	final static String RESISTANCE_TO_PHYSICAL = "Resistance to PHYSICAL"; //percent
-	final static String RESISTANCE_TO_MAGIC = "Resistance to MAGIC"; //percent
+	//OFFENSIVE
 	
-	final static String REDUCE_COOLDOWN_ON_JUMP = "Reduce cooldown on JUMP";
-	final static String REDUCE_COOLDOWN_ON_FIREBALL = "Reduce cooldown on FIREBALL";
+	//DEFENSIVE
 	
-	final static String MAXIMUM_MANA = "Maximum MANA"; 
+	final static String RESISTANCE_TO_DARK = "Resistance to DARK";  //working, percent
+	final static String RESISTANCE_TO_EARTH = "Resistance to EARTH"; //working, percent
+	final static String RESISTANCE_TO_FIRE = "Resistance to FIRE"; //working, percent
+	final static String RESISTANCE_TO_FORCE = "Resistance to FORCE"; //working, percent
+	final static String RESISTANCE_TO_ICE = "Resistance to ICE"; //working, percent
+	final static String RESISTANCE_TO_LIGHT = "Resistance to LIGHT"; //working, percent
+	final static String RESISTANCE_TO_LIGHTNING = "Resistance to LIGHTNING"; //working, percent
+	final static String RESISTANCE_TO_PHYSICAL = "Resistance to PHYSICAL"; //working, percent
+	final static String RESISTANCE_TO_MAGIC = "Resistance to MAGIC"; //working, percent
+	
+	final static String REDUCE_COOLDOWN_ON_JUMP = "Reduce cooldown on JUMP"; //unknown
+	final static String REDUCE_COOLDOWN_ON_FIREBALL = "Reduce cooldown on FIREBALL"; //unknown
+	
+	final static String MAXIMUM_MANA = "Maximum MANA";
 	final static String MAXIMUM_HEALTH = "Maximum HEALTH";
 	
 	final static String HEALTH_REGENERATION = "HEALTH Regeneration";
@@ -44,18 +48,25 @@ public class MPMAttributeType {
 	final static String INCREASE_KNOCKBACK_RESISTANCE = "Increase KNOCKBACK RESISTANCE";//unimplemented
 	final static String DECREASE_KNOCKBACK_RESISTANCE = "Decrease KNOCKBACK RESISTANCE";//unimplemented
 	
-	final static String DEATH_DEFYING = ChatColor.GOLD + "Soul Bound";  //ITEM STAYS IN PLAYERS INVENTORY ON DEATH, LOOSES DURABILITY
-	final static String DEVILS_TAKE = "DEVILS TAKE"; //ITEM IS LOST FOREVER ON PLAYERS DEATH.
-	final static String MITCHIRINEKO_MARCH = "Mitchirineko March";
+	final static String DEATH_DEFYING = ChatColor.GOLD + "Soul Bound";  //working, durability loss on death
+	final static String DEVILS_TAKE = "DEVILS TAKE"; //working, durability loss on death.
+	final static String MITCHIRINEKO_MARCH = "Mitchirineko March";  //working, right click to activate, no cancelling
 	
-	final static String POISONOUS = "POISONOUS";
-	final static String BLINDING = "BLINDING";
+	final static String POISONOUS = "POISON Target";  //working, takes a percent chance. 
+	final static String BLINDING = "BLIND Target";  //working, takes a percent chance. 
+	final static String CONFUSING = "CONFUSE Target";  //working, takes a percent chance.
+	final static String WITHERING = "WITHER Target";  //working, takes a percent chance.
+	final static String WEAKINING = "WEAKEN Target";  //working, takes a percent chance.
+	final static String SLOWING = "SLOW Target";  //working, takes a percent chance.
 	
+	final static String DRAGON_GROWL = "Dragon's ROAR!";  //working, takes a percent chance.
+	final static String CAT_PURR = "CAT LOVER";    //working, 20% chance of item purring.
+	final static String FLOWER_CHILD = "FLOWER CHILD";
 	
-	final static String DRAGON_GROWL = "Dragon's ROAR!";
-	final static String CAT_PURR = "CAT LOVER";  //CONTINUOUSLY PURRING SWORD.
+	final static String HEAL_BONUS = "HEAL Bonus"; //UNKNOWN
 	
-	final static String HEAL_BONUS = "HEAL Bonus";
+	final static String ARROW_VELOCITY_MULTIPLIER = "ARROW VELOCITY"; //implemented, needs testing, takes int as multiplier
+	
 	
 	final static String GIVE_RANDOM_ITEM = "RANDOMIZER";
 	public static String TEST_SKILL = "Test Skill";

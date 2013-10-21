@@ -244,6 +244,20 @@ public class TieredItems {
 		return item;
 	}
 		
+	public static ItemStack getTestBow(){
+		ItemStack item = new ItemStack(Material.BOW);
+		ItemMeta itemMeta = item.getItemMeta();
+		int percent = 0;
+		List<String> lore = new ArrayList<String>();
+		lore.add(MPMAttributeType.ARROW_VELOCITY_MULTIPLIER + ": 200");
+		itemMeta.setDisplayName(ChatColor.YELLOW + "Test BOW");
+		itemMeta.setLore(lore);
+		item.setItemMeta(itemMeta);
+		item = SimpleAttributesAPI.addItemAttribute(item, "Test BOW" ,  AttributeType.GENERIC_ATTACK_DAMAGE, 99/100);
+		return item;
+	}
+	
+	
 	//TIER 1 PLATE (Diamond Armor Set)
 	//TIER 1 PLATE (Diamond Armor Set)
 	
