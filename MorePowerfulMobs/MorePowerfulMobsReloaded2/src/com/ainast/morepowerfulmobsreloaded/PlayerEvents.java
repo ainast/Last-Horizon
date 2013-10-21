@@ -106,7 +106,7 @@ public class PlayerEvents implements Listener{
 	            	if (attributes.containsKey(MPMAttributeType.ARROW_VELOCITY_MULTIPLIER)){
 	            		System.out.println("Arrow Velocity Multiplier");
 	            		Long value = attributes.get(MPMAttributeType.ARROW_VELOCITY_MULTIPLIER);
-	            		event.getEntity().setVelocity(event.getEntity().getVelocity().clone().multiply(value/100));
+	            		event.getEntity().setVelocity(event.getEntity().getVelocity().clone().multiply((double) value/100.0));
 	            	}
 	            }
 	        }
