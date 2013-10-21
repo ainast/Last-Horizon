@@ -44,7 +44,6 @@ public class MPMMobTypes {
 	
 	public static ItemStack getCorruptedGuardDrop() {
 		ItemStack[] dropTable = { //add items seperated by comma
-								TieredItems.getTier1PristinePlateGreaves(),
 								TieredItems.getTestBow()
 								};
 		int i = MPMTools.generator.nextInt(dropTable.length);
