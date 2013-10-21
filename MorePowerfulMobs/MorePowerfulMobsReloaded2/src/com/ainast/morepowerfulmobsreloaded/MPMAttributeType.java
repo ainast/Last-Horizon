@@ -4,10 +4,6 @@ import org.bukkit.ChatColor;
 
 public class MPMAttributeType {
 	
-	//OFFENSIVE
-	
-	//DEFENSIVE
-	
 	final static String RESISTANCE_TO_DARK = "Resistance to DARK";  //working, percent
 	final static String RESISTANCE_TO_EARTH = "Resistance to EARTH"; //working, percent
 	final static String RESISTANCE_TO_FIRE = "Resistance to FIRE"; //working, percent
@@ -61,14 +57,14 @@ public class MPMAttributeType {
 	
 	final static String DRAGON_GROWL = "Dragon's ROAR!";  //working, takes a percent chance.
 	final static String CAT_PURR = "CAT LOVER";    //working, 20% chance of item purring.
-	final static String FLOWER_CHILD = "FLOWER CHILD";
+	final static String FLOWER_CHILD = "FLOWER CHILD"; //not working yet, possibly location to put flower is bad.
 	
 	final static String HEAL_BONUS = "HEAL Bonus"; //UNKNOWN
 	
-	final static String ARROW_VELOCITY_MULTIPLIER = "ARROW VELOCITY"; //implemented, needs testing, takes int as multiplier
+	final static String ARROW_VELOCITY_MULTIPLIER = "ARROW VELOCITY"; //implemented, needs testing, takes int/100 as multiplier
 	
 	
-	final static String GIVE_RANDOM_ITEM = "RANDOMIZER";
-	public static String TEST_SKILL = "Test Skill";
+	final static String GIVE_RANDOM_ITEM = "RANDOMIZER"; //generates a random name, random attributed item.
+	public static String TEST_SKILL = "Test Skill"; // a test skill
 	
 }
