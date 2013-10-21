@@ -15,7 +15,7 @@ public class PotionThrower extends BossMob implements Runnable {
 	public PotionThrower(){
 		super();
 		task = MPMTools.plugin.getServer().getScheduler().scheduleSyncRepeatingTask(MPMTools.plugin, new PotThrower(boss), 10, 10);
-		System.out.println("Scheduled Task: " + task);
+		//System.out.println("Scheduled Task: " + task);
 	}
 	
 	@Override

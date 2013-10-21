@@ -99,12 +99,12 @@ public class PlayerEvents implements Listener{
 	
 	@EventHandler
 	public void onLaunchArrowEvent(ProjectileLaunchEvent event) {
-		  System.out.println("ProjectileLaunchEvent");
+		  //System.out.println("ProjectileLaunchEvent");
 	        if(event.getEntity() instanceof Arrow) {
 	            if(event.getEntity().getShooter() instanceof Player) {
 	            	HashMap<String, Long> attributes = MPMTools.playerAttributes.get(event.getEntity().getShooter());
 	            	if (attributes.containsKey(MPMAttributeType.ARROW_VELOCITY_MULTIPLIER)){
-	            		System.out.println("Arrow Velocity Multiplier");
+	            		//System.out.println("Arrow Velocity Multiplier");
 	            		Long value = attributes.get(MPMAttributeType.ARROW_VELOCITY_MULTIPLIER);
 	            		event.getEntity().setVelocity(event.getEntity().getVelocity().clone().multiply((double) value/100.0));
 	            	}
@@ -114,7 +114,7 @@ public class PlayerEvents implements Listener{
 	
 	@EventHandler
 	public void onWeaponDamageEvent(WeaponDamageEvent event){
-		//System.out.println("WeaponDamageEvent");
+		////System.out.println("WeaponDamageEvent");
 		if (!(event.getEntity() instanceof Player)) return;
 		Player player = (Player) event.getAttackerEntity();
 		HashMap<String, Long> attributes = MPMTools.playerAttributes.get(player);
@@ -149,7 +149,7 @@ public class PlayerEvents implements Listener{
 			if (chance<=value && event.getEntity() instanceof Player){
 				Player p = (Player) event.getEntity();
 				Hero h = MPMTools.getHeroes().getCharacterManager().getHero(p);
-				//System.out.println("Confusing");
+				////System.out.println("Confusing");
 				p.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 60, 3, true));
 			}
 		}
@@ -161,7 +161,7 @@ public class PlayerEvents implements Listener{
 			if (chance<=value && event.getEntity() instanceof Player){
 				Player p = (Player) event.getEntity();
 				Hero h = MPMTools.getHeroes().getCharacterManager().getHero(p);
-				//System.out.println("Withering");
+				////System.out.println("Withering");
 				p.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 60, 3, true));
 			}
 		}
@@ -173,7 +173,7 @@ public class PlayerEvents implements Listener{
 			if (chance<=value && event.getEntity() instanceof Player){
 				Player p = (Player) event.getEntity();
 				Hero h = MPMTools.getHeroes().getCharacterManager().getHero(p);
-				//System.out.println("Weakening");
+				////System.out.println("Weakening");
 				p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 60, 3, true));
 			}
 		}
@@ -185,7 +185,7 @@ public class PlayerEvents implements Listener{
 			if (chance<=value && event.getEntity() instanceof Player){
 				Player p = (Player) event.getEntity();
 				Hero h = MPMTools.getHeroes().getCharacterManager().getHero(p);
-				//System.out.println("Slowing");
+				////System.out.println("Slowing");
 				p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 60, 3, true));
 			}
 		}
@@ -199,7 +199,7 @@ public class PlayerEvents implements Listener{
 		
 		Set<SkillType> st = event.getSkill().getTypes();
 		
-		//System.out.println(st.toString());
+		////System.out.println(st.toString());
 		
 		Player player = (Player) event.getEntity();
 		
@@ -278,9 +278,9 @@ public class PlayerEvents implements Listener{
 			}
 		}
 		
-		//System.out.println("Damage: " + oldDamage);
-		//System.out.println("modifiedDamage: " + modifiedDamage);
-		//System.out.println("Total: " + (oldDamage-modifiedDamage));
+		////System.out.println("Damage: " + oldDamage);
+		////System.out.println("modifiedDamage: " + modifiedDamage);
+		////System.out.println("Total: " + (oldDamage-modifiedDamage));
 		event.setDamage(oldDamage - modifiedDamage);
 	}
 	
@@ -311,7 +311,7 @@ public class PlayerEvents implements Listener{
 	public void onPlayerRegainHealthEvent(EntityRegainHealthEvent event){
 		if (!(event.getEntity() instanceof Player)) return;
 		Player player = (Player) event.getEntity();
-		//System.out.println(player.getName() + " has regenerated " + event.getAmount() + " health");
+		////System.out.println(player.getName() + " has regenerated " + event.getAmount() + " health");
 		if (MPMTools.playerAttributes.containsKey(player)){
 			if (event.getAmount()>player.getMaxHealth()){
 				event.setAmount(player.getMaxHealth());
@@ -365,8 +365,8 @@ public class PlayerEvents implements Listener{
 				if (item.hasItemMeta()){
 					if (item.getItemMeta().hasLore()){
 						if (item.getItemMeta().getLore().contains(MPMAttributeType.DEATH_DEFYING)){
-							System.out.println(item.getItemMeta().getDisplayName());
-							//System.out.println(item.getItemMeta().getLore().toString());
+							//System.out.println(item.getItemMeta().getDisplayName());
+							////System.out.println(item.getItemMeta().getLore().toString());
 							dropsToRemove.add(item);
 							item.setDurability((short) (item.getDurability() + ItemTools.durabilityModifier(item.getType())));
 							dropsToAdd.add(item);

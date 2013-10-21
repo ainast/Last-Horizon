@@ -11,7 +11,7 @@ import com.herocraftonline.heroes.characters.Monster;
 public class MPMMobTypes {
 
 	public static void spawnCorruptedResident(LivingEntity entity){
-		System.out.println("Spawn Corrupted Resident");
+		//System.out.println("Spawn Corrupted Resident");
 		
 		entity.setCustomName("Corrupted Resident");
 		entity.setCustomNameVisible(true);

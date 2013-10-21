@@ -70,7 +70,7 @@ public class MadScientistBossMob implements Runnable, Listener{
 	
 	private void spawnNewBoss() {
 		try {
-			System.out.println(location.toString());
+			//System.out.println(location.toString());
 			boss = location.getWorld().spawnCreature(this.location, this.entityType);	
 			equipBoss();
 			this.boss.setCustomName(this.bossName);
@@ -78,7 +78,7 @@ public class MadScientistBossMob implements Runnable, Listener{
 			//if (this.maxHealth!=0) boss.setMaxHealth(this.maxHealth);
 			setAlive(true);
 		} catch (Exception e) {
-			System.out.println("[WARNING] boss unable to spawn - " + this.bossName);
+			//System.out.println("[WARNING] boss unable to spawn - " + this.bossName);
 			setAlive(false);
 		}
 	}
@@ -146,7 +146,7 @@ class AbelPotThrower implements Runnable{
 	@Override
 	public void run(){
 		if (this.boss!=null){
-			System.out.println("Throw Potion");
+			//System.out.println("Throw Potion");
 			int chance = MPMTools.generator.nextInt(100)+1;
 			if (chance<101){
 				List<Entity> entityList = boss.getNearbyEntities(30, 30, 30);

@@ -47,11 +47,11 @@ public class MobEvents implements Listener {
 			if (regions.size()>0){
 				LivingEntity entity = event.getEntity();
 				if (regions.getFirst().equals("region1")){
-					System.out.println("Found Region 1");
+					//System.out.println("Found Region 1");
 					//this random variable gives the chance of a named mob spawning rather than regular.
 					//also, if the mob has a name, it won't attempt to change it.
 					if (rnd<=100){
-						System.out.println("Mob is custom name Visible");
+						//System.out.println("Mob is custom name Visible");
 						MobRegions.region1(entity);
 					}
 				}
@@ -60,15 +60,15 @@ public class MobEvents implements Listener {
 	
 	@EventHandler
 	public void onCustomMobDeathEvent(EntityDeathEvent event){
-		System.out.println("Entity Death Event");
+		//System.out.println("Entity Death Event");
 		EntityType entityType = event.getEntityType();
 	
 		if (entityType==EntityType.ZOMBIE || entityType==EntityType.SKELETON){
-			System.out.println("Mob is Zombie");
+			//System.out.println("Mob is Zombie");
 			String name = event.getEntity().getCustomName();
 			
 			if (name.contains("Corrupted Resident")){
-				System.out.println("Mob is corrupted Resident");
+				//System.out.println("Mob is corrupted Resident");
 				event.getDrops().clear();
 				Location location = event.getEntity().getLocation();
 				event.getEntity().getLocation().getWorld().dropItem(location, MPMMobTypes.getCorruptedGuardDrop());				

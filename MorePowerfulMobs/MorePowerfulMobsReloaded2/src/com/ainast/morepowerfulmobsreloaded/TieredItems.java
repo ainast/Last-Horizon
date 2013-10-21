@@ -24,7 +24,7 @@ public class TieredItems {
 		int i = 0;
 		while(chance>0 && i<5){
 			int chance2 = MPMTools.generator.nextInt(100)+1;
-			System.out.println("Chance: " + chance + "\t Chance2: " + chance2);
+			//System.out.println("Chance: " + chance + "\t Chance2: " + chance2);
 			if (chance2 <= chance){
 				if (chance2<=10){
 					int chance3 = MPMTools.generator.nextInt(3)+1;

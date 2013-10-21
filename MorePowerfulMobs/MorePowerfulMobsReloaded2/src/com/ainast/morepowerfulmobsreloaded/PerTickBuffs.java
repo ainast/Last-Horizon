@@ -41,19 +41,19 @@ public class PerTickBuffs implements Runnable {
 			}
 			
 			if (attributes.containsKey(MPMAttributeType.MAXIMUM_HEALTH)){
-				System.out.println("Player Name: " + p.getName());
-				System.out.println("Player Heath: " + p.getHealth());
-				System.out.println("Player Max Health: " + p.getMaxHealth());
+				//System.out.println("Player Name: " + p.getName());
+				//System.out.println("Player Heath: " + p.getHealth());
+				//System.out.println("Player Max Health: " + p.getMaxHealth());
 				
-				System.out.println("[Conditional] if player health is less than the attribute MAX_HEALTH");
+				//System.out.println("[Conditional] if player health is less than the attribute MAX_HEALTH");
 				if (p.getHealth()>attributes.get(MPMAttributeType.MAXIMUM_HEALTH).doubleValue()){
-					System.out.println("\t -- Player.setHealth" + attributes.get(MPMAttributeType.MAXIMUM_HEALTH));
+					//System.out.println("\t -- Player.setHealth" + attributes.get(MPMAttributeType.MAXIMUM_HEALTH));
 					p.setHealth(attributes.get(MPMAttributeType.MAXIMUM_HEALTH));
-					System.out.println("\t -- Player Health: " + p.getHealth());
+					//System.out.println("\t -- Player Health: " + p.getHealth());
 				}			
-				System.out.println("Players max health is: " + p.getMaxHealth());
+				//System.out.println("Players max health is: " + p.getMaxHealth());
 				p.setMaxHealth(attributes.get(MPMAttributeType.MAXIMUM_HEALTH).doubleValue());
-				System.out.println("Players max health is now: " + p.getMaxHealth());
+				//System.out.println("Players max health is now: " + p.getMaxHealth());
 			}else{
 				h.resetMaxHP();
 			}
