@@ -93,6 +93,9 @@ public class MPMTools {
 		possibleAttributes.add(MPMAttributeType.HEAL_BONUS);
 		
 		possibleAttributes.add(MPMAttributeType.GIVE_RANDOM_ITEM);
+		
+		possibleAttributes.add(MPMAttributeType.ARROW_VELOCITY_MULTIPLIER);
+		
 	}
 	
 	public static void calculateAttributes(Player player){
