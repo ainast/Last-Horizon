@@ -1,18 +1,12 @@
 package com.ainast.morepowerfulmobsreloaded;
 
-import me.egordm.simpleattributes.API.SimpleAttributesAPI;
-import me.egordm.simpleattributes.Attributes.AttributeType;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.util.permissions.BroadcastPermissions;
 import org.shininet.bukkit.playerheads.Tools;
 
 import com.herocraftonline.heroes.characters.Monster;
-import com.sk89q.worldedit.MobType;
 
 public class MPMMobTypes {
 
